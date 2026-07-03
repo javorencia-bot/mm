@@ -2282,13 +2282,20 @@ body:not(.floor-3) .scroll-hint {
   .bar-pct { text-align: center; min-width: 0; }
 
   .chart-zone {
-    width: min(92vw, 380px);
-    height: min(46vh, 320px);
+    width: min(92vw, 400px);
+    height: min(92vw, 400px);
+    flex-shrink: 0;
+    margin: 0 auto;
   }
   #results-chart {
-    width: min(36vh, 210px) !important;
-    height: min(36vh, 210px) !important;
+    width: min(85vw, 370px) !important;
+    height: min(85vw, 370px) !important;
   }
   .aname { font-size: 11px; }
   .aval { font-size: 10px; }
+  .clbl { display: none; }
+  .cpct { font-size: clamp(38px, 11vw, 56px) !important; }
+  #donut-legend {
+    margin-top: 8px;
+  }
 }
