@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>De todos y de nadie</title>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Exo+2:wght@200;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=10" />
+  <link rel="stylesheet" href="styles.css?v=11" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet"/>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
@@ -1203,10 +1203,10 @@
     const scene=document.getElementById("radar-scene");scene.classList.remove("hidden");
     requestAnimationFrame(()=>requestAnimationFrame(()=>scene.classList.add("show")));
     const canvas=document.getElementById("radar-canvas");
-    const size=window.innerWidth<700?Math.max(260,Math.min(400,window.innerWidth-64)):520;
+    const size=window.innerWidth<700?Math.max(280,Math.min(430,window.innerWidth-50)):520;
     canvas.width=size;canvas.height=size;canvas.style.width=size+"px";canvas.style.height=size+"px";
     document.getElementById("radar-wrap").style.cssText=`width:${size}px;height:${size}px`;
-    const ctx=canvas.getContext("2d"),cx=size/2,cy=size/2,R=size*0.32,N=counts.length;
+    const ctx=canvas.getContext("2d"),cx=size/2,cy=size/2,R=size*(window.innerWidth<700?0.42:0.32),N=counts.length;
     const angles=counts.map((_,i)=>(-Math.PI/2)+(2*Math.PI*i/N)),vals=counts.map(c=>c/total);
     let prog=0;const dur=entrada?700:500,startT=performance.now();
     function animRadar(now){
