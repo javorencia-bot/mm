@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>De todos y de nadie</title>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Exo+2:wght@200;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=11" />
+  <link rel="stylesheet" href="styles.css?v=12" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet"/>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
@@ -280,6 +280,7 @@
             <div class="bars-scene hidden" id="bars-scene"></div>
             <div class="radar-scene hidden" id="radar-scene"><div class="radar-wrap" id="radar-wrap"><canvas id="radar-canvas"></canvas></div><div class="radar-legend" id="radar-legend"></div></div>
             <div class="chart-zone hidden" id="czone"><div class="spin hidden" id="cspin"></div><canvas id="results-chart" class="hidden"></canvas><div class="ccenter"><div class="cpct" id="cpct"></div><div class="clbl" id="clbl"></div></div><svg id="ann-svg"></svg><div id="ann-labels" style="position:absolute;inset:0;pointer-events:none;z-index:5;"></div><div class="ring hidden" id="ring1"></div><div class="ring hidden" id="ring2"></div></div>
+            <div class="radar-legend" id="donut-legend"></div>
             <p class="net-hint hidden" id="net-hint" style="font-size:12px;color:rgba(200,245,245,.4);letter-spacing:.03em;margin-bottom:.5rem;text-align:center;"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#7EEAEA;box-shadow:0 0 6px #7EEAEA;margin-right:6px;vertical-align:middle;"></span>Cada punto es una respuesta — haz clic para leerla</p>
             <div class="net-scene hidden" id="net-scene"><canvas id="net-canvas"></canvas></div>
           </div>
@@ -1272,6 +1273,18 @@
             [["ring1",14,"rgba(184,174,255,.12)","0 0 22px rgba(124,111,205,.2)"],["ring2",26,"rgba(184,174,255,.05)",""]].forEach(([id,pad,bc,bs])=>{
               const el=document.getElementById(id);el.classList.remove("hidden");Object.assign(el.style,{left:`${cx-r-pad}px`,top:`${cy-r-pad}px`,width:`${(r+pad)*2}px`,height:`${(r+pad)*2}px`,border:`1px solid ${bc}`,boxShadow:bs});
             });
+            const dLegend=document.getElementById("donut-legend");
+            if(window.innerWidth<700){
+              // Mobile: sin etiquetas alrededor del donut (se superponían) — leyenda abajo
+              dLegend.innerHTML="";
+              [...counts.map((c,i)=>({c,i}))].filter(o=>o.c>0).sort((a,b)=>b.c-a.c).forEach(({c,i},rank)=>{
+                const pct=Math.round((c/total)*100),item=document.createElement("div");item.className="radar-leg-item";
+                item.innerHTML=`<div class="radar-leg-pct" style="color:${C[i]}"><span class="radar-leg-dot" style="background:${C[i]}"></span>${pct}%</div><div class="radar-leg-label">${q.o[i]}</div>`;
+                dLegend.appendChild(item);setTimeout(()=>item.classList.add("show"),120+rank*100);
+              });
+              return;
+            }
+            dLegend.innerHTML="";
             setTimeout(()=>{
               const svg=document.getElementById("ann-svg"),lc=document.getElementById("ann-labels");
               svg.innerHTML="";lc.innerHTML="";svg.classList.remove("show");
