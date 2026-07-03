@@ -2137,7 +2137,6 @@ body:not(.floor-3) .scroll-hint {
      flex vertical — así es imposible que algo se superponga. Todo baja,
      todo se puede scrollear. ── */
   #vres {
-    display: flex !important;
     flex-direction: column !important;
     height: 100% !important;
     overflow: hidden !important;
@@ -2210,7 +2209,6 @@ body:not(.floor-3) .scroll-hint {
   }
 
   .dot-scene, .bars-scene, .radar-scene, .net-scene {
-    display: flex !important;
     flex: none !important;
     min-height: auto !important;
     width: 100%;
