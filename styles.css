@@ -2210,7 +2210,7 @@ body:not(.floor-3) .scroll-hint {
     display: block !important;
     width: 100%;
     position: static !important;
-    padding-top: 0;
+    padding-top: 12px;
   }
 
   .dot-scene, .bars-scene, .radar-scene, .net-scene {
@@ -2282,14 +2282,14 @@ body:not(.floor-3) .scroll-hint {
   .bar-pct { text-align: center; min-width: 0; }
 
   .chart-zone {
-    width: min(92vw, 400px);
-    height: min(92vw, 400px);
+    width: min(78vw, 320px);
+    height: min(78vw, 320px);
     flex-shrink: 0;
-    margin: 0 auto;
+    margin: 0 auto 16px;
   }
   #results-chart {
-    width: min(85vw, 370px) !important;
-    height: min(85vw, 370px) !important;
+    width: min(72vw, 295px) !important;
+    height: min(72vw, 295px) !important;
   }
   .aname { font-size: 11px; }
   .aval { font-size: 10px; }
