@@ -2149,7 +2149,8 @@ body:not(.floor-3) .scroll-hint {
     justify-content: center !important;
     align-items: center !important;
     border-right: none !important;
-    border-bottom: 1px solid rgba(255,255,255,.08);
+    border-bottom: none;
+    background: transparent !important;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     padding: 10px 14px;
