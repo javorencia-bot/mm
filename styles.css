@@ -2246,14 +2246,14 @@ body:not(.floor-3) .scroll-hint {
   }
   .radar-leg-pct {
     font-size: 20px !important;
-    min-width: 56px;
+    min-width: 78px;
     flex-shrink: 0;
   }
   .radar-leg-dot {
     width: 12px;
     height: 12px;
     border-radius: 3px;
-    margin-right: 0;
+    margin-right: 10px;
     flex-shrink: 0;
   }
   .radar-leg-label {
