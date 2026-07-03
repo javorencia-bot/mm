@@ -2133,20 +2133,27 @@ body:not(.floor-3) .scroll-hint {
     text-decoration: none;
   }
 
-  /* ── Resultados: layout mobile — barra de preguntas horizontal arriba,
-     contenido fluye hacia abajo con scroll, volver = flecha fija ── */
+  /* ── Resultados mobile: TODO en flujo simple de bloque, sin centrado
+     flex vertical — así es imposible que algo se superponga. Todo baja,
+     todo se puede scrollear. ── */
   #vres {
+    display: flex !important;
     flex-direction: column !important;
+    height: 100% !important;
+    overflow: hidden !important;
   }
   .s-rsbar {
+    flex-shrink: 0;
     width: 100% !important;
+    display: flex !important;
     flex-direction: row !important;
-    justify-content: flex-start !important;
+    justify-content: center !important;
+    align-items: center !important;
     border-right: none !important;
     border-bottom: 1px solid rgba(255,255,255,.08);
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    padding: 12px 14px;
+    padding: 10px 14px;
     gap: 10px !important;
   }
   .qdot {
@@ -2181,30 +2188,34 @@ body:not(.floor-3) .scroll-hint {
   .bv-text { display: none; }
   .bv-arrow { font-size: 17px; }
 
-  /* ── Encuesta / resultados: todo en columna para que no se corte ── */
-  .s-main { padding: 1.5rem .75rem 1rem; }
-  .s-rq { font-size: clamp(15px, 4.5vw, 20px); }
   .s-main-col {
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    padding: .75rem 1rem .75rem !important;
-  }
-  .s-viz-wrap {
-    flex: none !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    padding-top: 28px;
+    display: block !important;
+    flex: 1 !important;
     width: 100%;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    padding: 28px 18px 90px !important;
+    box-sizing: border-box;
   }
   .s-rq {
-    margin-bottom: 4px;
+    display: block;
+    font-size: clamp(17px, 4.8vw, 21px);
+    margin: 0 0 28px !important;
+    text-align: center;
+  }
+  .s-viz-wrap {
+    display: block !important;
+    width: 100%;
+    position: static !important;
   }
 
-  .dot-scene {
+  .dot-scene, .bars-scene, .radar-scene, .net-scene {
+    display: flex !important;
     flex: none !important;
     min-height: auto !important;
+    width: 100%;
     flex-direction: column;
+    align-items: center;
     gap: 14px;
   }
   .dot-legend {
@@ -2212,13 +2223,6 @@ body:not(.floor-3) .scroll-hint {
     width: 100%;
   }
 
-  .radar-scene {
-    flex: none !important;
-    min-height: auto !important;
-    flex-direction: column;
-    gap: 1rem;
-    padding: .5rem 1rem;
-  }
   .radar-wrap {
     margin-right: 0;
   }
@@ -2235,13 +2239,13 @@ body:not(.floor-3) .scroll-hint {
   }
   .radar-leg-item { align-items: center; }
 
-  .bars-scene { flex: none !important; min-height: auto !important; padding: 0 1rem; }
-  .net-scene { flex: none !important; min-height: auto !important; }
+  .bars-scene { padding: 0; }
   .bar-row {
     flex-direction: column;
     align-items: center;
     gap: 8px;
     padding: 12px 0;
+    width: 100%;
   }
   .bar-right {
     align-items: center !important;
