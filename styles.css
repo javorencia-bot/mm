@@ -2203,13 +2203,14 @@ body:not(.floor-3) .scroll-hint {
   .s-rq {
     display: block;
     font-size: clamp(17px, 4.8vw, 21px);
-    margin: 0 0 28px !important;
+    margin: 0 0 16px !important;
     text-align: center;
   }
   .s-viz-wrap {
     display: block !important;
     width: 100%;
     position: static !important;
+    padding-top: 12px;
   }
 
   .dot-scene, .bars-scene, .radar-scene, .net-scene {
@@ -2219,6 +2220,7 @@ body:not(.floor-3) .scroll-hint {
     flex-direction: column;
     align-items: center;
     gap: 14px;
+    padding: 0 !important;
   }
   .dot-legend {
     max-width: 300px;
