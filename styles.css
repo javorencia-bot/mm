@@ -2222,6 +2222,9 @@ body:not(.floor-3) .scroll-hint {
     gap: 14px;
     padding: 0 !important;
   }
+  .net-scene {
+    height: min(60vh, 420px) !important;
+  }
   .dot-legend {
     max-width: 300px;
     width: 100%;
