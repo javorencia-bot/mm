@@ -105,7 +105,9 @@
             "La responsabilidad recae en los diseñadores de explorar el potencial de las herramientas generativas e incorporar los lenguajes del co-diseño a su práctica."
             <cite>— Sanders, E. B. N. y Stappers, P. J. (2008). <em>Co-creation and the new landscapes of design.</em> CoDesign, 4(1), 5–18.</cite>
           </blockquote>
-          <button class="concept-next" onclick="scrollConcept(1)">Siguiente concepto →</button>
+          <div class="concept-nav-row">
+            <button class="concept-next" onclick="scrollConcept(1)">Siguiente concepto →</button>
+          </div>
         </div>
 
         <!-- Concepto 2: Autoría -->
@@ -120,7 +122,10 @@
             "La función de un autor es caracterizar la existencia, circulación y operación de ciertos discursos dentro de una sociedad."
             <cite>— Foucault, M. (1969/1977). <em>¿Qué es un autor?</em> En D. F. Bouchard (Ed.), Language, counter-memory, practice (pp. 113–138). Cornell University Press.</cite>
           </blockquote>
-          <button class="concept-next" onclick="scrollConcept(2)">Siguiente concepto →</button>
+          <div class="concept-nav-row">
+            <button class="concept-prev" onclick="scrollConcept(0)">← Concepto anterior</button>
+            <button class="concept-next" onclick="scrollConcept(2)">Siguiente concepto →</button>
+          </div>
         </div>
 
         <!-- Concepto 3: Originalidad -->
@@ -135,7 +140,10 @@
             "La creatividad requiere tanto originalidad como efectividad."
             <cite>— Runco, M. A. y Jaeger, G. J. (2012). <em>The standard definition of creativity.</em> Creativity Research Journal, 24(1), 92–96.</cite>
           </blockquote>
-          <button class="concept-next" onclick="goToFloor(3)">Ver los casos →</button>
+          <div class="concept-nav-row">
+            <button class="concept-prev" onclick="scrollConcept(1)">← Concepto anterior</button>
+            <button class="concept-next" onclick="goToFloor(3)">Ver los casos →</button>
+          </div>
         </div>
 
       </div>
@@ -266,7 +274,8 @@
         <button onclick="sVerResultados()" style="padding:13px 28px;background:linear-gradient(135deg,#0D7A8A,#1DA8A8);color:#fff;border:none;border-radius:999px;font-size:14px;font-weight:500;cursor:pointer;font-family:'Exo 2',sans-serif;">Ver resultados</button>
       </div>
 
-      <div class="s-page hidden" id="vres" style="display:flex;flex-direction:row;width:100%;height:100%;overflow:hidden;">
+      <div class="s-page hidden" id="vres" style="display:flex;flex-direction:row;width:100%;height:100%;overflow:hidden;position:relative;">
+        <div class="s-total-badge" id="sTotalBadge">Cargando...</div>
         <div class="s-rsbar" id="s-rsbar"></div>
         <div class="s-main-col" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:1rem 1.5rem .8rem;overflow:hidden;">
           <div style="display:none;"><span id="s-mt"></span><span id="s-mh"></span><span id="s-mp"></span></div>
@@ -509,7 +518,7 @@
 
     // ── CURSOR ────────────────────────────────────────────
     document.addEventListener('mousemove',e=>{ cursor.style.left=e.clientX+'px'; cursor.style.top=e.clientY+'px'; });
-    document.querySelectorAll('.card, .intro-enter, .project-cta, .concept-next').forEach(el=>{
+    document.querySelectorAll('.card, .intro-enter, .project-cta, .concept-next, .concept-prev').forEach(el=>{
       el.addEventListener('mouseenter',()=>cursor.classList.add('hovering'));
       el.addEventListener('mouseleave',()=>cursor.classList.remove('hovering'));
     });
@@ -1056,6 +1065,7 @@
     try{
       const snap=await getDocs(collection(db,"respuestas"));
       rows=[];snap.forEach(d=>rows.push(d.data()));
+      const tb=document.getElementById("sTotalBadge");if(tb)tb.textContent=`${rows.length} ${rows.length===1?"persona ha respondido":"personas han respondido"}`;
       buildBar();renderTab(rows,tab,false);
     }catch(e){const sp=document.getElementById("cspin");if(sp)sp.classList.add("hidden");alert("Error al cargar: "+e.message);}
   }
