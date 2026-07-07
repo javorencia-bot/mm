@@ -1295,25 +1295,6 @@ body.floor-3 .survey-bubble { display: none; }
   position: relative;
 }
 
-/* Contador total de respuestas */
-.s-total-badge {
-  position: absolute;
-  top: 14px;
-  right: 18px;
-  font-family: 'Exo 2', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.05em;
-  color: rgba(240,238,255,0.55);
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 999px;
-  padding: 5px 14px;
-  z-index: 20;
-  pointer-events: none;
-  white-space: nowrap;
-}
-.s-total-badge .stb-short { display: none; }
-
 /* Sidebar */
 .s-rsbar {
   width: 80px; flex-shrink: 0;
@@ -2197,7 +2178,7 @@ body:not(.floor-3) .scroll-hint {
     border-bottom: 1px solid rgba(255,255,255,.08);
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    padding: 12px 60px 12px 14px;
+    padding: 12px 14px;
     gap: 10px !important;
   }
   .qdot {
@@ -2213,15 +2194,6 @@ body:not(.floor-3) .scroll-hint {
     bottom: -9px;
     transform: translateX(-50%);
   }
-  .s-total-badge {
-    top: 8px;
-    right: 12px;
-    padding: 4px 9px;
-    font-size: 9.5px;
-    z-index: 25;
-  }
-  .s-total-badge .stb-full { display: none; }
-  .s-total-badge .stb-short { display: inline; }
   .btn-volver {
     position: fixed;
     bottom: 18px;
