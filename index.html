@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>De todos y de nadie</title>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Exo+2:wght@200;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=15" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet"/>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
@@ -76,10 +76,10 @@
             ¿De qué manera la co-creación de imágenes entre diseñador e inteligencia artificial configura tensiones en torno a la noción de originalidad en el contexto actual del diseño gráfico en Chile?
           </p>
           <p class="project-body">
-            <em>De todos y de nadie</em> es un archivo visual digital cuyo objetivo es visibilizar la tensión en torno a la noción de originalidad en la co-creación de imágenes entre diseñador e inteligencia artificial, en el contexto actual del diseño gráfico en Chile. Para ello, documenta cinco procesos de co-creación entre diseñadora e inteligencia artificial, registrando no solo los resultados sino las decisiones, instrucciones, iteraciones y criterios de selección que configuraron cada imagen. De este modo, lo que habitualmente permanece oculto en la mediación algorítmica se vuelve aquí legible — y discutible.
+            <em>De todos y de nadie</em> es un archivo visual digital que busca visibilizar la tensión entre co-creación y originalidad, y abrir una reflexión colectiva en torno a ella. Documenta cinco procesos de co-creación entre diseñadora e inteligencia artificial en el contexto actual del diseño gráfico en Chile, registrando no solo los resultados sino las decisiones, instrucciones, iteraciones y criterios de selección que configuraron cada imagen. Lo que permanece habitualmente oculto en la mediación algorítmica se vuelve aquí legible — y discutible.
           </p>
           <p class="project-body">
-            Este trabajo nace en el contexto del Proyecto de Título para optar al título profesional de Diseñadora con mención en Visualidad y Medios de la Universidad de Chile.
+            El proyecto se inscribe en el Proyecto de Título para optar al título profesional de Diseñadora con mención en Visualidad y Medios de la Universidad de Chile.
           </p>
           <button class="project-cta" onclick="goToFloor(2)">
             Ver conceptos clave <span>→</span>
@@ -105,9 +105,7 @@
             "La responsabilidad recae en los diseñadores de explorar el potencial de las herramientas generativas e incorporar los lenguajes del co-diseño a su práctica."
             <cite>— Sanders, E. B. N. y Stappers, P. J. (2008). <em>Co-creation and the new landscapes of design.</em> CoDesign, 4(1), 5–18.</cite>
           </blockquote>
-          <div class="concept-nav-row">
-            <button class="concept-next" onclick="scrollConcept(1)">Siguiente concepto →</button>
-          </div>
+          <button class="concept-next" onclick="scrollConcept(1)">Siguiente concepto →</button>
         </div>
 
         <!-- Concepto 2: Autoría -->
@@ -122,10 +120,7 @@
             "La función de un autor es caracterizar la existencia, circulación y operación de ciertos discursos dentro de una sociedad."
             <cite>— Foucault, M. (1969/1977). <em>¿Qué es un autor?</em> En D. F. Bouchard (Ed.), Language, counter-memory, practice (pp. 113–138). Cornell University Press.</cite>
           </blockquote>
-          <div class="concept-nav-row">
-            <button class="concept-prev" onclick="scrollConcept(0)">← Concepto anterior</button>
-            <button class="concept-next" onclick="scrollConcept(2)">Siguiente concepto →</button>
-          </div>
+          <button class="concept-next" onclick="scrollConcept(2)">Siguiente concepto →</button>
         </div>
 
         <!-- Concepto 3: Originalidad -->
@@ -140,10 +135,7 @@
             "La creatividad requiere tanto originalidad como efectividad."
             <cite>— Runco, M. A. y Jaeger, G. J. (2012). <em>The standard definition of creativity.</em> Creativity Research Journal, 24(1), 92–96.</cite>
           </blockquote>
-          <div class="concept-nav-row">
-            <button class="concept-prev" onclick="scrollConcept(1)">← Concepto anterior</button>
-            <button class="concept-next" onclick="goToFloor(3)">Ver los casos →</button>
-          </div>
+          <button class="concept-next" onclick="goToFloor(3)">Ver los casos →</button>
         </div>
 
       </div>
@@ -274,8 +266,7 @@
         <button onclick="sVerResultados()" style="padding:13px 28px;background:linear-gradient(135deg,#0D7A8A,#1DA8A8);color:#fff;border:none;border-radius:999px;font-size:14px;font-weight:500;cursor:pointer;font-family:'Exo 2',sans-serif;">Ver resultados</button>
       </div>
 
-      <div class="s-page hidden" id="vres" style="display:flex;flex-direction:row;width:100%;height:100%;overflow:hidden;position:relative;">
-        <div class="s-total-badge" id="sTotalBadge">— respuestas</div>
+      <div class="s-page hidden" id="vres" style="display:flex;flex-direction:row;width:100%;height:100%;overflow:hidden;">
         <div class="s-rsbar" id="s-rsbar"></div>
         <div class="s-main-col" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:1rem 1.5rem .8rem;overflow:hidden;">
           <div style="display:none;"><span id="s-mt"></span><span id="s-mh"></span><span id="s-mp"></span></div>
@@ -289,10 +280,11 @@
             <div class="bars-scene hidden" id="bars-scene"></div>
             <div class="radar-scene hidden" id="radar-scene"><div class="radar-wrap" id="radar-wrap"><canvas id="radar-canvas"></canvas></div><div class="radar-legend" id="radar-legend"></div></div>
             <div class="chart-zone hidden" id="czone"><div class="spin hidden" id="cspin"></div><canvas id="results-chart" class="hidden"></canvas><div class="ccenter"><div class="cpct" id="cpct"></div><div class="clbl" id="clbl"></div></div><svg id="ann-svg"></svg><div id="ann-labels" style="position:absolute;inset:0;pointer-events:none;z-index:5;"></div><div class="ring hidden" id="ring1"></div><div class="ring hidden" id="ring2"></div></div>
+            <div class="radar-legend hidden" id="donut-legend"></div>
             <p class="net-hint hidden" id="net-hint" style="font-size:12px;color:rgba(200,245,245,.4);letter-spacing:.03em;margin-bottom:.5rem;text-align:center;"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#7EEAEA;box-shadow:0 0 6px #7EEAEA;margin-right:6px;vertical-align:middle;"></span>Cada punto es una respuesta — haz clic para leerla</p>
             <div class="net-scene hidden" id="net-scene"><canvas id="net-canvas"></canvas></div>
           </div>
-          <button onclick="window.sIrA('vr')" class="btn-volver">← Volver al inicio</button>
+          <button onclick="window.sIrA('vr')" class="btn-volver"><span class="bv-arrow">←</span><span class="bv-text"> Volver al inicio</span></button>
         </div>
       </div>
     </div>
@@ -517,7 +509,7 @@
 
     // ── CURSOR ────────────────────────────────────────────
     document.addEventListener('mousemove',e=>{ cursor.style.left=e.clientX+'px'; cursor.style.top=e.clientY+'px'; });
-    document.querySelectorAll('.card, .intro-enter, .project-cta, .concept-next, .concept-prev').forEach(el=>{
+    document.querySelectorAll('.card, .intro-enter, .project-cta, .concept-next').forEach(el=>{
       el.addEventListener('mouseenter',()=>cursor.classList.add('hovering'));
       el.addEventListener('mouseleave',()=>cursor.classList.remove('hovering'));
     });
@@ -1064,7 +1056,6 @@
     try{
       const snap=await getDocs(collection(db,"respuestas"));
       rows=[];snap.forEach(d=>rows.push(d.data()));
-      const tb=document.getElementById("sTotalBadge");if(tb)tb.textContent=`${rows.length} ${rows.length===1?"respuesta":"respuestas"}`;
       buildBar();renderTab(rows,tab,false);
     }catch(e){const sp=document.getElementById("cspin");if(sp)sp.classList.add("hidden");alert("Error al cargar: "+e.message);}
   }
@@ -1082,7 +1073,7 @@
 
   function limpiarViz(){
     if(netAnim){cancelAnimationFrame(netAnim);netAnim=null;}
-    ["dot-scene","bars-scene","radar-scene","czone","net-scene"].forEach(id=>{
+    ["dot-scene","bars-scene","radar-scene","czone","net-scene","donut-legend"].forEach(id=>{
       const el=document.getElementById(id);
       if(el){el.classList.remove("show");el.classList.add("hidden");}
     });
@@ -1213,10 +1204,10 @@
     const scene=document.getElementById("radar-scene");scene.classList.remove("hidden");
     requestAnimationFrame(()=>requestAnimationFrame(()=>scene.classList.add("show")));
     const canvas=document.getElementById("radar-canvas");
-    const size=window.innerWidth<700?Math.max(190,Math.min(300,window.innerWidth-140)):520;
+    const size=window.innerWidth<700?Math.max(280,Math.min(430,window.innerWidth-50)):520;
     canvas.width=size;canvas.height=size;canvas.style.width=size+"px";canvas.style.height=size+"px";
     document.getElementById("radar-wrap").style.cssText=`width:${size}px;height:${size}px`;
-    const ctx=canvas.getContext("2d"),cx=size/2,cy=size/2,R=size*0.32,N=counts.length;
+    const ctx=canvas.getContext("2d"),cx=size/2,cy=size/2,R=size*(window.innerWidth<700?0.42:0.32),N=counts.length;
     const angles=counts.map((_,i)=>(-Math.PI/2)+(2*Math.PI*i/N)),vals=counts.map(c=>c/total);
     let prog=0;const dur=entrada?700:500,startT=performance.now();
     function animRadar(now){
@@ -1233,9 +1224,11 @@
     }
     requestAnimationFrame(animRadar);
     const wrap=document.getElementById("radar-wrap");wrap.querySelectorAll(".radar-axis-label").forEach(el=>el.remove());
+    if(window.innerWidth>=700){
     angles.forEach((a,i)=>{
       const pad=R*0.22,lx=cx+(R+pad)*Math.cos(a),ly=cy+(R+pad)*Math.sin(a);
       const el=document.createElement("div");
+      el.className="radar-axis-label";
       const cos=Math.cos(a),sin=Math.sin(a);
       const base="position:absolute;font-size:11px;color:rgba(240,238,255,.6);font-family:Inter,sans-serif;line-height:1.4;pointer-events:none;white-space:normal;";
       if(cos>0.3){
@@ -1250,6 +1243,7 @@
       el.textContent=q.o[i];
       wrap.appendChild(el);
     });
+    }
     const legend=document.getElementById("radar-legend");legend.innerHTML="";
     [...counts.map((c,i)=>({c,i}))].sort((a,b)=>b.c-a.c).forEach(({c,i},rank)=>{
       const pct=Math.round((c/total)*100),item=document.createElement("div");item.className="radar-leg-item";
@@ -1279,6 +1273,19 @@
             [["ring1",14,"rgba(184,174,255,.12)","0 0 22px rgba(124,111,205,.2)"],["ring2",26,"rgba(184,174,255,.05)",""]].forEach(([id,pad,bc,bs])=>{
               const el=document.getElementById(id);el.classList.remove("hidden");Object.assign(el.style,{left:`${cx-r-pad}px`,top:`${cy-r-pad}px`,width:`${(r+pad)*2}px`,height:`${(r+pad)*2}px`,border:`1px solid ${bc}`,boxShadow:bs});
             });
+            const dLegend=document.getElementById("donut-legend");
+            if(window.innerWidth<700){
+              // Mobile: sin etiquetas alrededor del donut (se superponían) — leyenda abajo
+              dLegend.innerHTML="";
+              dLegend.classList.remove("hidden");
+              [...counts.map((c,i)=>({c,i}))].filter(o=>o.c>0).sort((a,b)=>b.c-a.c).forEach(({c,i},rank)=>{
+                const pct=Math.round((c/total)*100),item=document.createElement("div");item.className="radar-leg-item";
+                item.innerHTML=`<div class="radar-leg-pct" style="color:${C[i]}"><span class="radar-leg-dot" style="background:${C[i]}"></span>${pct}%</div><div class="radar-leg-label">${q.o[i]}</div>`;
+                dLegend.appendChild(item);setTimeout(()=>item.classList.add("show"),120+rank*100);
+              });
+              return;
+            }
+            dLegend.innerHTML="";
             setTimeout(()=>{
               const svg=document.getElementById("ann-svg"),lc=document.getElementById("ann-labels");
               svg.innerHTML="";lc.innerHTML="";svg.classList.remove("show");
