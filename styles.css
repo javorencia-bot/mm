@@ -1897,6 +1897,56 @@ body.floor-3 .survey-bubble { display: none; }
   background: rgba(255,255,255,0.05);
 }
 
+/* Contador total de personas que respondieron */
+.s-total-badge {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: rgba(240,238,255,0.55);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 999px;
+  padding: 5px 14px;
+  z-index: 20;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.concept-nav-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.concept-prev {
+  align-self: flex-start;
+  background: none;
+  border: 0.5px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.5);
+  font-family: 'Exo 2', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 13px 32px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.concept-prev:hover {
+  border-color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.05);
+}
+
 /* Puntos de navegación */
 .concept-dots {
   position: absolute;
@@ -2211,6 +2261,14 @@ body:not(.floor-3) .scroll-hint {
     top: auto;
     bottom: -9px;
     transform: translateX(-50%);
+  }
+  .s-total-badge {
+    position: static;
+    display: block;
+    width: fit-content;
+    margin: 10px auto 0;
+    text-align: center;
+    order: -1;
   }
   .btn-volver {
     position: fixed;
