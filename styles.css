@@ -1312,6 +1312,7 @@ body.floor-3 .survey-bubble { display: none; }
   pointer-events: none;
   white-space: nowrap;
 }
+.s-total-badge .stb-short { display: none; }
 
 /* Sidebar */
 .s-rsbar {
@@ -2196,7 +2197,7 @@ body:not(.floor-3) .scroll-hint {
     border-bottom: 1px solid rgba(255,255,255,.08);
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    padding: 12px 14px;
+    padding: 12px 60px 12px 14px;
     gap: 10px !important;
   }
   .qdot {
@@ -2212,6 +2213,15 @@ body:not(.floor-3) .scroll-hint {
     bottom: -9px;
     transform: translateX(-50%);
   }
+  .s-total-badge {
+    top: 8px;
+    right: 12px;
+    padding: 4px 9px;
+    font-size: 9.5px;
+    z-index: 25;
+  }
+  .s-total-badge .stb-full { display: none; }
+  .s-total-badge .stb-short { display: inline; }
   .btn-volver {
     position: fixed;
     bottom: 18px;
