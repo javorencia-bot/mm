@@ -1295,24 +1295,6 @@ body.floor-3 .survey-bubble { display: none; }
   position: relative;
 }
 
-/* Contador total de respuestas */
-.s-total-badge {
-  position: absolute;
-  top: 14px;
-  right: 18px;
-  font-family: 'Exo 2', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.05em;
-  color: rgba(240,238,255,0.55);
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 999px;
-  padding: 5px 14px;
-  z-index: 20;
-  pointer-events: none;
-  white-space: nowrap;
-}
-
 /* Sidebar */
 .s-rsbar {
   width: 80px; flex-shrink: 0;
@@ -1865,38 +1847,6 @@ body.floor-3 .survey-bubble { display: none; }
 .concept-next:hover::before { transform: scaleX(1); }
 .concept-next:hover { border-color: rgba(255,255,255,0.9); }
 
-.concept-nav-row {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.concept-prev {
-  align-self: flex-start;
-  background: none;
-  border: 0.5px solid rgba(255,255,255,0.2);
-  color: rgba(255,255,255,0.5);
-  font-family: 'Exo 2', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  cursor: pointer;
-  padding: 13px 32px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transition: background 0.3s, border-color 0.3s, color 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-
-.concept-prev:hover {
-  border-color: rgba(255,255,255,0.6);
-  color: rgba(255,255,255,0.85);
-  background: rgba(255,255,255,0.05);
-}
-
 /* Puntos de navegación */
 .concept-dots {
   position: absolute;
@@ -2045,6 +1995,9 @@ body:not(.floor-3) .scroll-hint {
    (encuesta, altura real de viewport y menú)
 ══════════════════════════════════════ */
 @media (max-width: 700px) {
+  .survey-screen {
+    border-top: none !important;
+  }
 
   /* Evitar cualquier corte por scroll horizontal accidental */
   html, body { overflow-x: hidden; }
@@ -2183,20 +2136,27 @@ body:not(.floor-3) .scroll-hint {
     text-decoration: none;
   }
 
-  /* ── Resultados: layout mobile — barra de preguntas horizontal arriba,
-     contenido fluye hacia abajo con scroll, volver = flecha fija ── */
+  /* ── Resultados mobile: TODO en flujo simple de bloque, sin centrado
+     flex vertical — así es imposible que algo se superponga. Todo baja,
+     todo se puede scrollear. ── */
   #vres {
     flex-direction: column !important;
+    height: 100% !important;
+    overflow: hidden !important;
   }
   .s-rsbar {
+    flex-shrink: 0;
     width: 100% !important;
+    display: flex !important;
     flex-direction: row !important;
-    justify-content: flex-start !important;
+    justify-content: center !important;
+    align-items: center !important;
     border-right: none !important;
-    border-bottom: 1px solid rgba(255,255,255,.08);
+    border-bottom: none;
+    background: transparent !important;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    padding: 12px 14px;
+    padding: 10px 14px;
     gap: 10px !important;
   }
   .qdot {
@@ -2231,67 +2191,89 @@ body:not(.floor-3) .scroll-hint {
   .bv-text { display: none; }
   .bv-arrow { font-size: 17px; }
 
-  /* ── Encuesta / resultados: todo en columna para que no se corte ── */
-  .s-rsbar { width: 54px; gap: 10px; }
-  .s-qdot { width: 34px; height: 34px; font-size: 12px; }
-  .s-main { padding: 1.5rem .75rem 1rem; }
-  .s-rq { font-size: clamp(15px, 4.5vw, 20px); }
   .s-main-col {
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    padding: .75rem 1rem .75rem !important;
-  }
-  .s-viz-wrap {
-    flex: none !important;
-    justify-content: flex-start !important;
-    padding-top: 28px;
+    display: block !important;
+    flex: 1 !important;
     width: 100%;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    padding: 28px 18px 90px !important;
+    box-sizing: border-box;
   }
   .s-rq {
-    margin-bottom: 4px;
+    display: block;
+    font-size: clamp(17px, 4.8vw, 21px);
+    margin: 0 0 8px !important;
+    text-align: center;
+  }
+  .s-viz-wrap {
+    display: block !important;
+    width: 100%;
+    position: static !important;
+    padding-top: 12px;
   }
 
-  .dot-scene {
+  .dot-scene, .bars-scene, .radar-scene, .net-scene {
     flex: none !important;
     min-height: auto !important;
+    width: 100%;
     flex-direction: column;
+    align-items: center;
     gap: 14px;
+    padding: 0 !important;
+  }
+  .net-scene {
+    height: min(60vh, 420px) !important;
   }
   .dot-legend {
     max-width: 300px;
     width: 100%;
   }
 
-  .radar-scene {
-    flex: none !important;
-    min-height: auto !important;
-    flex-direction: column;
-    gap: 1rem;
-    padding: .5rem 1rem;
-  }
   .radar-wrap {
     margin-right: 0;
   }
-  .radar-axis-label {
-    max-width: 84px;
-    font-size: 9px;
-  }
   .radar-legend {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    width: 100%;
     min-width: 0;
-    gap: 10px 16px;
+    gap: 12px;
+    align-items: stretch;
+    margin-top: 8px;
   }
-  .radar-leg-item { align-items: center; }
+  .radar-leg-item {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 12px;
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+  }
+  .radar-leg-pct {
+    font-size: 20px !important;
+    min-width: 78px;
+    flex-shrink: 0;
+  }
+  .radar-leg-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+  .radar-leg-label {
+    font-size: 13.5px;
+    flex: 1;
+    text-align: left;
+  }
 
-  .bars-scene { flex: none !important; min-height: auto !important; padding: 0 1rem; }
-  .net-scene { flex: none !important; min-height: auto !important; }
+  .bars-scene { padding: 0; }
   .bar-row {
     flex-direction: column;
     align-items: center;
     gap: 8px;
     padding: 12px 0;
+    width: 100%;
   }
   .bar-right {
     align-items: center !important;
@@ -2303,13 +2285,20 @@ body:not(.floor-3) .scroll-hint {
   .bar-pct { text-align: center; min-width: 0; }
 
   .chart-zone {
-    width: min(92vw, 380px);
-    height: min(46vh, 320px);
+    width: min(78vw, 320px);
+    height: min(78vw, 320px);
+    flex-shrink: 0;
+    margin: 0 auto 16px;
   }
   #results-chart {
-    width: min(36vh, 210px) !important;
-    height: min(36vh, 210px) !important;
+    width: min(72vw, 295px) !important;
+    height: min(72vw, 295px) !important;
   }
   .aname { font-size: 11px; }
   .aval { font-size: 10px; }
+  .clbl { display: none; }
+  .cpct { font-size: clamp(38px, 11vw, 56px) !important; }
+  #donut-legend {
+    margin-top: 8px;
+  }
 }
