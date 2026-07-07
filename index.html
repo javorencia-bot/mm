@@ -275,7 +275,7 @@
       </div>
 
       <div class="s-page hidden" id="vres" style="display:flex;flex-direction:row;width:100%;height:100%;overflow:hidden;position:relative;">
-        <div class="s-total-badge" id="sTotalBadge">Cargando...</div>
+        <div class="s-total-badge" id="sTotalBadge"><span class="stb-full">Cargando...</span><span class="stb-short">—</span></div>
         <div class="s-rsbar" id="s-rsbar"></div>
         <div class="s-main-col" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:1rem 1.5rem .8rem;overflow:hidden;">
           <div style="display:none;"><span id="s-mt"></span><span id="s-mh"></span><span id="s-mp"></span></div>
@@ -1065,7 +1065,12 @@
     try{
       const snap=await getDocs(collection(db,"respuestas"));
       rows=[];snap.forEach(d=>rows.push(d.data()));
-      const tb=document.getElementById("sTotalBadge");if(tb)tb.textContent=`${rows.length} ${rows.length===1?"persona ha respondido":"personas han respondido"}`;
+      const tb=document.getElementById("sTotalBadge");
+      if(tb){
+        const full=tb.querySelector(".stb-full"),short=tb.querySelector(".stb-short");
+        if(full)full.textContent=`${rows.length} ${rows.length===1?"persona ha respondido":"personas han respondido"}`;
+        if(short)short.textContent=`${rows.length} resp.`;
+      }
       buildBar();renderTab(rows,tab,false);
     }catch(e){const sp=document.getElementById("cspin");if(sp)sp.classList.add("hidden");alert("Error al cargar: "+e.message);}
   }
