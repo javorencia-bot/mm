@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>De todos y de nadie</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Exo+2:wght@200;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=14" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body class="floor-0">
+
+  <canvas id="bgAurora"></canvas>
+  <canvas id="bgNeural"></canvas>
+  <div class="cursor" id="cursor"></div>
+
+  <header>
+    <div class="logo">De todos y de nadie</div>
+    <nav id="navDesktop">
+      <a href="#" onclick="goToFloor(0); return false;">Índice</a>
+      <a href="#" onclick="goToFloor(1); return false;">Proyecto</a>
+      <a href="#" onclick="goToFloor(2); return false;">Conceptos</a>
+      <a href="#" onclick="goToFloor(3); return false;">Casos</a>
+      <a href="#" onclick="irAEncuesta(); return false;">Reflexión colectiva</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" onclick="toggleMobileNav()" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#" onclick="goToFloor(0); toggleMobileNav(); return false;">Índice</a>
+    <a href="#" onclick="goToFloor(1); toggleMobileNav(); return false;">Proyecto</a>
+    <a href="#" onclick="goToFloor(2); toggleMobileNav(); return false;">Conceptos</a>
+    <a href="#" onclick="goToFloor(3); toggleMobileNav(); return false;">Casos</a>
+    <a href="#" onclick="irAEncuesta(); toggleMobileNav(); return false;">Reflexión colectiva</a>
+  </div>
+
+  <div class="drag-hint"><p>← Arrastra para explorar los casos →</p></div>
+  <div class="counter" id="counter" style="display:none;">01 / 06</div>
+  <div class="scroll-hint" id="scrollHint">Drag</div>
+
+  <div class="elevator floor-0" id="elevator">
+
+    <!-- ── FLOOR 0: PORTADA ───────────────────────────────── -->
+    <div class="intro-screen" id="introScreen">
+      <div class="intro-center" id="introCenter">
+        <div class="intro-logo" id="introLogo">
+          <div class="logo-line"><span class="logo-serif">DE TODOS</span></div>
+          <div class="logo-line"><span class="logo-serif-light">y de nadie</span></div>
+        </div>
+        <button class="intro-enter" id="introEnter" onclick="goToFloor(1)">
+          <span class="enter-text">Entrar</span>
+          <span class="enter-arrow">→</span>
+        </button>
+      </div>
+      <div class="intro-footer">
+        <span>2026</span>
+        <span>Santiago de Chile</span>
+      </div>
+    </div>
+
+    <!-- ── FLOOR 1: PROYECTO ──────────────────────────────── -->
+    <div class="project-screen" id="projectScreen">
+      <div class="project-content">
+        <div class="project-left">
+          <div class="project-label">Sobre el proyecto</div>
+          <div class="project-title">
+            <span class="project-serif">De todos</span>
+            <span class="project-serif-light">y de nadie</span>
+          </div>
+        </div>
+        <div class="project-right">
+          <p class="project-body project-question">
+            ¿De qué manera la co-creación de imágenes entre diseñador e inteligencia artificial configura tensiones en torno a la noción de originalidad en el contexto actual del diseño gráfico en Chile?
+          </p>
+          <p class="project-body">
+            <em>De todos y de nadie</em> es un archivo visual digital cuyo objetivo es visibilizar la tensión en torno a la noción de originalidad en la co-creación de imágenes entre diseñador e inteligencia artificial, en el contexto actual del diseño gráfico en Chile. Para ello, documenta cinco procesos de co-creación entre diseñadora e inteligencia artificial, registrando no solo los resultados sino las decisiones, instrucciones, iteraciones y criterios de selección que configuraron cada imagen. De este modo, lo que habitualmente permanece oculto en la mediación algorítmica se vuelve aquí legible — y discutible. 
+          </p>
+          <p class="project-body">
+            Este trabajo nace en el contexto del Proyecto de Título para optar al título profesional de Diseñadora con mención en Visualidad y Medios de la Universidad de Chile.
+          </p>
+          <button class="project-cta" onclick="goToFloor(2)">
+            Ver conceptos clave <span>→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── FLOOR 2: CONCEPTOS CLAVE ───────────────────────── -->
+    <div class="concepts-screen" id="conceptsScreen">
+      <!-- Sub-elevador interno -->
+      <div class="concepts-elevator" id="conceptsElevator">
+
+        <!-- Concepto 1: Co-creación -->
+        <div class="concept-panel">
+          <div class="concept-index">01 / 03</div>
+          <div class="concept-label">Concepto clave</div>
+          <div class="concept-word">Co-creación</div>
+          <div class="concept-body">
+            Cuando un diseñador trabaja con una herramienta de inteligencia artificial generativa, el resultado visual emerge de una interacción entre intención humana y capacidad algorítmica que no puede atribuirse de manera exclusiva a ninguno de los dos. El diseñador formula instrucciones, evalúa resultados, descarta alternativas y ajusta el proceso. El sistema genera, propone y sorprende. Entre ambos, algo aparece que no hubiera existido de otra forma.
+          </div>
+          <blockquote class="concept-quote">
+            "La responsabilidad recae en los diseñadores de explorar el potencial de las herramientas generativas e incorporar los lenguajes del co-diseño a su práctica."
+            <cite>— Sanders, E. B. N. y Stappers, P. J. (2008). <em>Co-creation and the new landscapes of design.</em> CoDesign, 4(1), 5–18.</cite>
+          </blockquote>
+          <button class="concept-next" onclick="scrollConcept(1)">Siguiente concepto →</button>
+        </div>
+
+        <!-- Concepto 2: Autoría -->
+        <div class="concept-panel">
+          <div class="concept-index">02 / 03</div>
+          <div class="concept-label">Concepto clave</div>
+          <div class="concept-word">Autoría</div>
+          <div class="concept-body">
+            La autoría no es un hecho natural ni inmutable, sino una construcción histórica que organiza y regula la circulación del conocimiento. En el contexto de la inteligencia artificial generativa, esta categoría se tensiona: el diseñador dirige el proceso mediante instrucciones, selecciona y descarta resultados, interviene y refina, pero en última instancia no controla con precisión lo que el sistema va a producir. ¿Quién es entonces el autor de lo que aparece?
+          </div>
+          <blockquote class="concept-quote">
+            "La función de un autor es caracterizar la existencia, circulación y operación de ciertos discursos dentro de una sociedad."
+            <cite>— Foucault, M. (1969/1977). <em>¿Qué es un autor?</em> En D. F. Bouchard (Ed.), Language, counter-memory, practice (pp. 113–138). Cornell University Press.</cite>
+          </blockquote>
+          <button class="concept-next" onclick="scrollConcept(2)">Siguiente concepto →</button>
+        </div>
+
+        <!-- Concepto 3: Originalidad -->
+        <div class="concept-panel">
+          <div class="concept-index">03 / 03</div>
+          <div class="concept-label">Concepto clave</div>
+          <div class="concept-word">Originalidad</div>
+          <div class="concept-body">
+            En el diseño gráfico, la originalidad no puede entenderse como un valor absoluto: algo es original en la medida en que responde de manera nueva y pertinente a un problema específico. Los sistemas de IA producen resultados estadísticamente probables a partir de millones de imágenes previas, operando siempre dentro de un espacio construido sobre lo existente. Esta condición abre la pregunta central de este archivo: ¿puede una imagen co-creada con IA ser genuinamente original?
+          </div>
+          <blockquote class="concept-quote">
+            "La creatividad requiere tanto originalidad como efectividad."
+            <cite>— Runco, M. A. y Jaeger, G. J. (2012). <em>The standard definition of creativity.</em> Creativity Research Journal, 24(1), 92–96.</cite>
+          </blockquote>
+          <button class="concept-next" onclick="goToFloor(3)">Ver los casos →</button>
+        </div>
+
+      </div>
+
+      <!-- Indicadores de posición -->
+      <div class="concept-dots">
+        <span class="concept-dot active" onclick="scrollConcept(0)"></span>
+        <span class="concept-dot" onclick="scrollConcept(1)"></span>
+        <span class="concept-dot" onclick="scrollConcept(2)"></span>
+      </div>
+    </div>
+
+    <!-- ── FLOOR 3: CASOS ──────────────────────────────────── -->
+    <div class="stage" id="stage">
+      <div class="track" id="track">
+
+        <div class="card" data-index="0" onclick="openModal(0)">
+          <div class="card-index">01</div>
+          <div class="card-img" style="background-image:url('caso1-3.jpg');background-size:cover;background-position:center;"></div>
+          <div class="card-overlay">
+            <div class="card-num">Caso 01</div>
+            <div class="card-title">El retrato</div>
+            <div class="card-tags"><span class="tag">imagen</span><span class="tag">proceso</span></div>
+          </div>
+        </div>
+
+        <div class="card" data-index="1" onclick="openModal(1)">
+          <div class="card-index">02</div>
+          <div class="card-img" style="background-image:url('caso2-4.jpg');background-size:cover;background-position:center;"></div>
+          <div class="card-overlay">
+            <div class="card-num">Caso 02</div>
+            <div class="card-title">La multitud</div>
+            <div class="card-tags"><span class="tag">fotografía</span><span class="tag">archivo</span></div>
+          </div>
+        </div>
+
+        <div class="card" data-index="2" onclick="openModal(2)">
+          <div class="card-index">03</div>
+          <div class="card-img" style="background-image:url('caso3-7.jpg');background-size:cover;background-position:center;"></div>
+          <div class="card-overlay">
+            <div class="card-num">Caso 03</div>
+            <div class="card-title">El objeto aislado</div>
+            <div class="card-tags"><span class="tag">objeto</span><span class="tag">tiempo</span></div>
+          </div>
+        </div>
+
+        <div class="card" data-index="3" onclick="openModal(3)">
+          <div class="card-index">04</div>
+          <div class="card-img" style="background-image:url('caso4-4.jpg');background-size:cover;background-position:center;"></div>
+          <div class="card-overlay">
+            <div class="card-num">Caso 04</div>
+            <div class="card-title">El encuentro</div>
+            <div class="card-tags"><span class="tag">retrato</span><span class="tag">luz</span></div>
+          </div>
+        </div>
+
+        <div class="card" data-index="4" onclick="openModal(4)">
+          <div class="card-index">05</div>
+          <div class="card-img" style="background-image:url('caso5-7.jpg');background-size:cover;background-position:center;"></div>
+          <div class="card-overlay">
+            <div class="card-num">Caso 05</div>
+            <div class="card-title">La referencia cultural local</div>
+            <div class="card-tags"><span class="tag">identidad</span><span class="tag">lugar</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <button class="casos-cta" onclick="irAEncuesta()">
+        Ir a la reflexión colectiva <span>→</span>
+      </button>
+
+    </div>
+
+    <!-- ── FLOOR 4: ENCUESTA ───────────────────────────────── -->
+    <div class="survey-screen" id="surveyScreen">
+
+      <div class="reflexion-intro-overlay" id="reflexionIntroOverlay" onclick="if(event.target===this)closeReflexionIntro()">
+        <div class="reflexion-intro-box">
+          <button class="reflexion-intro-close" onclick="closeReflexionIntro()">Cerrar ✕</button>
+          <p class="eyebrow" style="opacity:1;animation:none;display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#7EEAEA;margin-bottom:1.2rem;">Reflexión colectiva anónima</p>
+          <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,38px);font-weight:400;letter-spacing:-.01em;line-height:1.15;margin-bottom:1rem;color:#F0EEFF;">Lo que <em style="font-style:italic;color:#7EEAEA;">piensas</em><br>importa.</h2>
+          <p style="font-size:14.5px;color:rgba(240,238,255,.65);line-height:1.7;max-width:440px;">Después de recorrer los cinco casos, esta es la última etapa del archivo: un espacio de reflexión colectiva y anónima que busca activar una discusión en torno a las tensiones en la noción de originalidad en la co-creación de imágenes con inteligencia artificial. No busca cerrar una respuesta — busca abrir la pregunta a quienes piensan y practican el diseño.</p>
+          <button class="reflexion-intro-participar" onclick="closeReflexionIntro()">Participar <span>→</span></button>
+        </div>
+      </div>
+
+      <div class="s-page" id="vr" style="display:flex;flex-direction:column;align-items:flex-start;justify-content:center;width:100%;height:100%;overflow-y:auto;padding:2rem 3rem;">
+        <p class="eyebrow" style="opacity:1;animation:none;display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#7EEAEA;margin-bottom:1.4rem;">Reflexión colectiva anónima
+        </p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,48px);font-weight:400;letter-spacing:-.01em;line-height:1.1;margin-bottom:1rem;color:#F0EEFF;">Lo que <em style="font-style:italic;color:#7EEAEA;">piensas</em><br>importa.</h2>
+        <p style="font-size:14px;color:rgba(240,238,255,.5);line-height:1.65;margin-bottom:2rem;max-width:420px;">Responde de forma anónima. Tus datos personales son privados y jamás se mostrarán públicamente — solo existen para evitar respuestas duplicadas.</p>
+        <div style="width:100%;max-width:420px;">
+          <div style="margin-bottom:1rem;">
+            <label style="display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(240,238,255,.28);margin-bottom:7px;font-family:'Exo 2',sans-serif;">Tu nombre</label>
+            <input type="text" id="rn" placeholder="Cómo te llamas" autocomplete="name" style="width:100%;padding:13px 0;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.2);font-size:16px;color:#F0EEFF;font-family:inherit;outline:none;"/>
+          </div>
+          <div style="margin-bottom:1rem;">
+            <label style="display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(240,238,255,.28);margin-bottom:7px;font-family:'Exo 2',sans-serif;">Correo electrónico</label>
+            <input type="email" id="re" placeholder="tucorreo@ejemplo.com" autocomplete="email" style="width:100%;padding:13px 0;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.2);font-size:16px;color:#F0EEFF;font-family:inherit;outline:none;"/>
+          </div>
+          <div id="rerr" style="font-size:12px;color:#ff7eb3;margin-top:6px;display:none;"></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1.5rem;margin-top:1.5rem;flex-wrap:wrap;">
+          <button id="breg" disabled onclick="sRegistrar()" style="padding:13px 28px;background:linear-gradient(135deg,#0D7A8A,#1DA8A8);color:#fff;border:none;border-radius:999px;font-size:14px;font-weight:500;cursor:pointer;font-family:'Exo 2',sans-serif;letter-spacing:.08em;opacity:.3;transition:opacity .2s;">Participar</button>
+          <button onclick="sVerResultados()" class="btn-resultados">Ver resultados →</button>
+        </div>
+      </div>
+
+      <div class="s-page hidden" id="vq" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;padding:1rem 2rem;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:rgba(255,255,255,.06);">
+          <div id="qpf" style="height:2px;background:linear-gradient(90deg,#0D7A8A,#7EEAEA);transition:width .6s;box-shadow:0 0 10px #1DA8A8;"></div>
+        </div>
+        <p id="qnum" style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(240,238,255,.28);margin-bottom:2rem;font-family:'Exo 2',sans-serif;"></p>
+        <div id="qtxt" style="font-size:clamp(22px,4vw,36px);font-weight:600;letter-spacing:-.025em;line-height:1.2;margin-bottom:2.5rem;max-width:600px;color:#F0EEFF;font-family:'Inter',sans-serif;"></div>
+        <div id="qopts" style="display:flex;flex-direction:column;align-items:center;gap:9px;width:100%;max-width:480px;"></div>
+        <div style="display:flex;justify-content:center;align-items:center;gap:1.25rem;margin-top:2rem;">
+          <button id="bback" onclick="sAtras()" disabled style="padding:9px 18px;background:transparent;color:rgba(240,238,255,.3);border:1px solid rgba(255,255,255,.09);border-radius:10px;font-size:13px;cursor:pointer;font-family:'Exo 2',sans-serif;">Atrás</button>
+          <span id="qstep" style="display:none;"></span>
+          <button id="bnext" onclick="sSig()" disabled style="padding:9px 24px;background:linear-gradient(135deg,#0D7A8A,#1DA8A8);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Exo 2',sans-serif;">Siguiente</button>
+        </div>
+      </div>
+
+      <div class="s-page hidden" id="vd" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;height:100%;padding:2rem;">
+        <div style="width:60px;height:60px;border-radius:50%;background:radial-gradient(circle,rgba(124,111,205,.35),transparent);border:1px solid rgba(124,111,205,.5);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:26px;box-shadow:0 0 28px rgba(124,111,205,.35);">✓</div>
+        <h2 style="font-size:34px;font-weight:600;letter-spacing:-.03em;margin-bottom:.75rem;color:#F0EEFF;font-family:'Inter',sans-serif;">Gracias.</h2>
+        <p style="font-size:15px;color:rgba(240,238,255,.5);line-height:1.6;max-width:340px;margin:0 auto 2rem;font-family:'Inter',sans-serif;">Tus respuestas quedaron registradas y ya forman parte del resultado colectivo.</p>
+        <button onclick="sVerResultados()" style="padding:13px 28px;background:linear-gradient(135deg,#0D7A8A,#1DA8A8);color:#fff;border:none;border-radius:999px;font-size:14px;font-weight:500;cursor:pointer;font-family:'Exo 2',sans-serif;">Ver resultados</button>
+      </div>
+
+      <div class="s-page hidden" id="vres" style="display:flex;flex-direction:row;width:100%;height:100%;overflow:hidden;">
+        <div class="s-rsbar" id="s-rsbar"></div>
+        <div class="s-main-col" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:1rem 1.5rem .8rem;overflow:hidden;">
+          <div style="display:none;"><span id="s-mt"></span><span id="s-mh"></span><span id="s-mp"></span></div>
+          <div class="s-rq" id="s-rq"></div>
+          <p id="net-hint-inline" style="display:none;font-size:12px;color:rgba(200,245,245,.4);letter-spacing:.03em;margin-bottom:.6rem;text-align:center;opacity:0;transition:opacity .6s;">
+            <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#7EEAEA;box-shadow:0 0 6px #7EEAEA;margin-right:6px;vertical-align:middle;"></span>
+            Cada punto es una respuesta — haz clic para leerla
+          </p>
+          <div class="s-viz-wrap" style="flex:1;width:100%;min-height:0;display:flex;align-items:center;justify-content:center;position:relative;">
+            <div class="dot-scene hidden" id="dot-scene"><div class="dot-grid" id="dot-grid"></div><div class="dot-legend" id="dot-legend"></div></div>
+            <div class="bars-scene hidden" id="bars-scene"></div>
+            <div class="radar-scene hidden" id="radar-scene"><div class="radar-wrap" id="radar-wrap"><canvas id="radar-canvas"></canvas></div><div class="radar-legend" id="radar-legend"></div></div>
+            <div class="chart-zone hidden" id="czone"><div class="spin hidden" id="cspin"></div><canvas id="results-chart" class="hidden"></canvas><div class="ccenter"><div class="cpct" id="cpct"></div><div class="clbl" id="clbl"></div></div><svg id="ann-svg"></svg><div id="ann-labels" style="position:absolute;inset:0;pointer-events:none;z-index:5;"></div><div class="ring hidden" id="ring1"></div><div class="ring hidden" id="ring2"></div></div>
+            <div class="radar-legend" id="donut-legend"></div>
+            <p class="net-hint hidden" id="net-hint" style="font-size:12px;color:rgba(200,245,245,.4);letter-spacing:.03em;margin-bottom:.5rem;text-align:center;"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#7EEAEA;box-shadow:0 0 6px #7EEAEA;margin-right:6px;vertical-align:middle;"></span>Cada punto es una respuesta — haz clic para leerla</p>
+            <div class="net-scene hidden" id="net-scene"><canvas id="net-canvas"></canvas></div>
+          </div>
+          <button onclick="window.sIrA('vr')" class="btn-volver"><span class="bv-arrow">←</span><span class="bv-text"> Volver al inicio</span></button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- fin elevador -->
+
+  <!-- Modal red neuronal -->
+  <div class="net-modal" id="net-modal">
+    <div class="net-modal-bg" onclick="cerrarModal()"></div>
+    <div class="net-modal-box">
+      <button class="net-modal-close" onclick="cerrarModal()">×</button>
+      <div class="net-modal-dot" id="modal-dot"></div>
+      <div class="net-modal-text" id="modal-text"></div>
+    </div>
+  </div>
+  <div class="net-tooltip hidden" id="net-tooltip"></div>
+
+  <!-- Modal de casos -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalIfBg(event)">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modalClose" onclick="closeModal()">Cerrar ✕</button>
+      <div class="modal-case-nav">
+        <button class="modal-case-nav-btn" id="modalPrevCase" onclick="goToCase(-1)">← Caso anterior</button>
+        <button class="modal-case-nav-btn" id="modalNextCase" onclick="goToCase(1)">Caso siguiente →</button>
+      </div>
+      <div class="modal-header">
+        <div class="modal-case-num" id="mNum">Caso 01</div>
+        <div class="modal-title" id="mTitle">El retrato</div>
+        <div class="modal-intencion-label">Intención comunicacional</div>
+        <div class="modal-intencion" id="mIntencion"></div>
+      </div>
+      <div class="process-nav" id="processNav">
+        <button class="pnav-btn active" onclick="setStep(0)">Prompt base</button>
+        <button class="pnav-btn" onclick="setStep(1)">Iteraciones</button>
+        <button class="pnav-btn" onclick="setStep(2)">Imagen final</button>
+        <button class="pnav-btn" onclick="setStep(3)">Lectura crítica</button>
+      </div>
+      <div class="process-step active" id="step-0"></div>
+      <div class="process-step" id="step-1"></div>
+      <div class="process-step" id="step-2"></div>
+      <div class="process-step" id="step-3"></div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  </div>
+
+  <!-- FAB encuesta -->
+  <button class="survey-fab" id="surveyFab" onclick="irAEncuesta()" title="Encuesta colectiva">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+  </button>
+  <div class="survey-bubble" id="surveyBubble">
+    <button class="survey-bubble-close" onclick="closeBubble()">×</button>
+    <div class="survey-bubble-title"><span class="survey-bubble-dot"></span>Encuesta colectiva</div>
+    <div class="survey-bubble-text">Antes de explorar los casos, ¿qué piensas sobre la originalidad y la co-creación con IA?</div>
+    <button class="survey-bubble-btn" onclick="irAEncuesta()">Participar →</button>
+  </div>
+
+  <script>
+    // ── ALTURA REAL DEL VIEWPORT (más confiable que vh/svh/dvh
+    //    en navegadores embebidos como el de WhatsApp) ─────────
+    (function setRealVH() {
+      function update() {
+        document.documentElement.style.setProperty('--vh100', window.innerHeight + 'px');
+      }
+      update();
+      window.addEventListener('resize', update);
+      window.addEventListener('orientationchange', () => setTimeout(update, 200));
+    })();
+
+    // ── FONDO GLOBAL ──────────────────────────────────────
+    (function initGlobalBg() {
+      const auroraEl = document.getElementById('bgAurora');
+      const neuralEl = document.getElementById('bgNeural');
+      const actx = auroraEl.getContext('2d');
+      const nctx = neuralEl.getContext('2d');
+      function resize() { auroraEl.width = neuralEl.width = window.innerWidth; auroraEl.height = neuralEl.height = window.innerHeight; }
+      resize(); window.addEventListener('resize', resize);
+      let mx=0.5,my=0.5,tmx=0.5,tmy=0.5,t=0;
+      document.addEventListener('mousemove',e=>{tmx=e.clientX/window.innerWidth;tmy=e.clientY/window.innerHeight;});
+      const BLOBS=[
+        {bx:0.12,by:0.28,rx:0.55,ry:0.40,cr:10,cg:60,cb:255,a:0.55,sx:0.004,sy:0.003,px:0.0,py:1.5},
+        {bx:0.75,by:0.58,rx:0.52,ry:0.38,cr:0,cg:180,cb:200,a:0.48,sx:0.003,sy:0.004,px:2.1,py:0.8},
+        {bx:0.45,by:0.18,rx:0.42,ry:0.30,cr:20,cg:40,cb:220,a:0.38,sx:0.005,sy:0.003,px:4.2,py:3.1},
+        {bx:0.85,by:0.80,rx:0.48,ry:0.42,cr:0,cg:160,cb:180,a:0.42,sx:0.004,sy:0.003,px:1.0,py:5.0},
+        {bx:0.20,by:0.72,rx:0.50,ry:0.35,cr:5,cg:30,cb:200,a:0.40,sx:0.003,sy:0.004,px:3.3,py:2.2},
+        {bx:0.55,by:0.50,rx:0.44,ry:0.34,cr:0,cg:230,cb:160,a:0.45,sx:0.004,sy:0.005,px:1.8,py:3.7},
+      ];
+      function drawAurora(){
+        t+=1; mx+=(tmx-mx)*0.025; my+=(tmy-my)*0.025;
+        const W=auroraEl.width,H=auroraEl.height;
+        actx.fillStyle='#04091a'; actx.fillRect(0,0,W,H);
+        actx.globalCompositeOperation='lighter';
+        BLOBS.forEach(b=>{
+          const px=(b.bx+Math.sin(t*b.sx+b.px)*0.18+Math.sin(t*b.sx*1.6+b.px+1.2)*0.07+(mx-0.5)*0.10)*W;
+          const py=(b.by+Math.cos(t*b.sy+b.py)*0.15+Math.cos(t*b.sy*2.1+b.py+0.8)*0.05+(my-0.5)*0.10)*H;
+          const rw=b.rx*Math.min(W,H),rh=b.ry*Math.min(W,H);
+          const pulse=b.a+Math.sin(t*b.sx*3+b.px)*0.08;
+          actx.save(); actx.translate(px,py); actx.scale(1,rh/rw);
+          const g=actx.createRadialGradient(0,0,0,0,0,rw);
+          g.addColorStop(0,`rgba(${b.cr},${b.cg},${b.cb},${pulse})`);
+          g.addColorStop(0.35,`rgba(${b.cr},${b.cg},${b.cb},${pulse*0.50})`);
+          g.addColorStop(0.65,`rgba(${b.cr},${b.cg},${b.cb},${pulse*0.18})`);
+          g.addColorStop(1,`rgba(${b.cr},${b.cg},${b.cb},0)`);
+          actx.fillStyle=g; actx.beginPath(); actx.arc(0,0,rw,0,Math.PI*2); actx.fill(); actx.restore();
+        });
+        actx.globalCompositeOperation='source-over';
+        const vig=actx.createRadialGradient(W*0.5,H*0.5,H*0.05,W*0.5,H*0.5,H*0.85);
+        vig.addColorStop(0,'rgba(0,0,0,0)'); vig.addColorStop(1,'rgba(0,0,0,0.65)');
+        actx.fillStyle=vig; actx.fillRect(0,0,W,H);
+        requestAnimationFrame(drawAurora);
+      }
+      drawAurora();
+      const DIRS=[{dx:1,dy:0},{dx:-1,dy:0},{dx:0,dy:1},{dx:0,dy:-1}];
+      function createLine(){
+        const dir=DIRS[Math.floor(Math.random()*DIRS.length)];
+        const W=neuralEl.width,H=neuralEl.height;
+        let x,y;
+        if(dir.dx===1){x=0;y=Math.random()*H;}
+        else if(dir.dx===-1){x=W;y=Math.random()*H;}
+        else if(dir.dy===1){x=Math.random()*W;y=0;}
+        else{x=Math.random()*W;y=H;}
+        return{x,y,dx:dir.dx,dy:dir.dy,speed:Math.random()*3.5+1.8,length:Math.random()*260+120,alpha:Math.random()*0.35+0.15,width:Math.random()*0.8+0.4};
+      }
+      let lines=Array.from({length:28},createLine);
+      lines.forEach((l,i)=>{
+        const W=neuralEl.width,H=neuralEl.height,offset=i/lines.length;
+        if(l.dx===1)l.x=-offset*l.length;
+        else if(l.dx===-1)l.x=W+offset*l.length;
+        else if(l.dy===1)l.y=-offset*l.length;
+        else l.y=H+offset*l.length;
+      });
+      function drawTron(){
+        const W=neuralEl.width,H=neuralEl.height;
+        nctx.clearRect(0,0,W,H);
+        lines.forEach((l,i)=>{
+          l.x+=l.dx*l.speed; l.y+=l.dy*l.speed;
+          const hx=l.x,hy=l.y,tx=l.x-l.dx*l.length,ty=l.y-l.dy*l.length;
+          const grad=nctx.createLinearGradient(tx,ty,hx,hy);
+          grad.addColorStop(0,'rgba(100,210,255,0)');
+          grad.addColorStop(0.6,`rgba(140,225,255,${l.alpha*0.4})`);
+          grad.addColorStop(1,`rgba(180,240,255,${l.alpha})`);
+          nctx.beginPath();nctx.moveTo(tx,ty);nctx.lineTo(hx,hy);
+          nctx.strokeStyle=grad;nctx.lineWidth=l.width;nctx.stroke();
+          nctx.beginPath();nctx.arc(hx,hy,l.width*1.5,0,Math.PI*2);
+          nctx.fillStyle=`rgba(200,240,255,${l.alpha*1.5})`;nctx.fill();
+          const outX=(l.dx===1&&tx>W)||(l.dx===-1&&tx<0);
+          const outY=(l.dy===1&&ty>H)||(l.dy===-1&&ty<0);
+          if(outX||outY)lines[i]=createLine();
+        });
+        requestAnimationFrame(drawTron);
+      }
+      drawTron();
+    })();
+
+    // ── ELEVADOR PRINCIPAL ────────────────────────────────
+    const elevator = document.getElementById('elevator');
+    const cursor   = document.getElementById('cursor');
+
+    window.addEventListener('load', () => {
+      setTimeout(() => document.getElementById('introScreen').classList.add('loaded'), 300);
+    });
+
+    window.goToFloor = function(n) {
+      elevator.classList.remove('floor-0','floor-1','floor-2','floor-3','floor-4');
+      elevator.classList.add('floor-'+n);
+      document.body.classList.remove('floor-0','floor-1','floor-2','floor-3','floor-4');
+      document.body.classList.add('floor-'+n);
+      if(n===3) showSurveyUI();
+    };
+
+    window.toggleMobileNav = function() {
+      document.getElementById('mobileNav').classList.toggle('open');
+      document.getElementById('navToggle').classList.toggle('open');
+    };
+
+    // ── CONCEPTOS: sub-scroll vertical ───────────────────
+    let currentConcept = 0;
+    const conceptsElevator = document.getElementById('conceptsElevator');
+
+    window.scrollConcept = function(idx) {
+      currentConcept = idx;
+      conceptsElevator.style.transform = `translateY(calc(var(--vh100, 100vh) * ${-idx}))`;
+      document.querySelectorAll('.concept-dot').forEach((d,i) => {
+        d.classList.toggle('active', i===idx);
+      });
+    };
+
+    // Navegación entre conceptos: solo mediante el botón "Siguiente concepto"
+    // y los puntos indicadores (concept-dot). Se desactivó el scroll con rueda
+    // del mouse y el swipe táctil porque saltaban directo del concepto 1 al 3.
+
+    // ── EFECTO DISTORSIÓN LOGO ────────────────────────────
+    const logoEl = document.getElementById('introLogo');
+    const svgFilter = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    svgFilter.setAttribute('width','0'); svgFilter.setAttribute('height','0');
+    svgFilter.style.cssText='position:absolute;overflow:hidden;width:0;height:0';
+    svgFilter.innerHTML=`<defs><filter id="liquidFilter" x="-25%" y="-25%" width="150%" height="150%"><feTurbulence id="turbulence" type="fractalNoise" baseFrequency="0.008 0.006" numOctaves="4" seed="5" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G"/></filter></defs>`;
+    document.body.appendChild(svgFilter);
+    logoEl.style.filter='url(#liquidFilter)';
+    const turbulence=document.getElementById('turbulence');
+    const dispMap=svgFilter.querySelector('feDisplacementMap');
+    let animFrame=null,currentScale=0,targetScale=0,phase=0,isHovering=false;
+    function animateFilter(){
+      phase+=0.008; currentScale+=(targetScale-currentScale)*0.05;
+      if(isHovering){
+        turbulence.setAttribute('baseFrequency',`${(0.008+Math.sin(phase)*0.002).toFixed(4)} ${(0.006+Math.sin(phase*1.3)*0.0015).toFixed(4)}`);
+        turbulence.setAttribute('seed',(5+Math.sin(phase*0.5)*3).toFixed(2));
+      }
+      dispMap.setAttribute('scale',currentScale.toFixed(3));
+      if(isHovering||currentScale>0.05) animFrame=requestAnimationFrame(animateFilter);
+      else { currentScale=0; dispMap.setAttribute('scale','0'); turbulence.setAttribute('baseFrequency','0.008 0.006'); animFrame=null; }
+    }
+    logoEl.addEventListener('mouseenter',()=>{ isHovering=true; targetScale=22; if(!animFrame)animFrame=requestAnimationFrame(animateFilter); });
+    logoEl.addEventListener('mouseleave',()=>{ isHovering=false; targetScale=0; if(!animFrame)animFrame=requestAnimationFrame(animateFilter); });
+
+    // ── CURSOR ────────────────────────────────────────────
+    document.addEventListener('mousemove',e=>{ cursor.style.left=e.clientX+'px'; cursor.style.top=e.clientY+'px'; });
+    document.querySelectorAll('.card, .intro-enter, .project-cta, .concept-next').forEach(el=>{
+      el.addEventListener('mouseenter',()=>cursor.classList.add('hovering'));
+      el.addEventListener('mouseleave',()=>cursor.classList.remove('hovering'));
+    });
+
+    // ── DRAG HORIZONTAL (casos) ───────────────────────────
+    const stage=document.getElementById('stage');
+    const track=document.getElementById('track');
+    const counter=document.getElementById('counter');
+    const scrollHint=document.getElementById('scrollHint');
+    let isDragging=false,hasDragged=false,startX=0,currentX=0,targetX=0,velX=0,lastX=0;
+    function getMaxScroll(){return-(track.scrollWidth-stage.clientWidth);}
+    function lerp(a,b,t){return a+(b-a)*t;}
+    function animate(){
+      currentX=lerp(currentX,targetX,0.08);
+      if(Math.abs(currentX-targetX)<0.01)currentX=targetX;
+      targetX+=velX; velX*=0.92;
+      const max=getMaxScroll();
+      if(targetX>0)targetX=lerp(targetX,0,0.15);
+      if(targetX<max)targetX=lerp(targetX,max,0.15);
+      track.style.transform=`translateX(${currentX}px)`;
+      updateCounter();
+      requestAnimationFrame(animate);
+    }
+    animate();
+    stage.addEventListener('mousedown',e=>{isDragging=true;hasDragged=false;startX=e.clientX-currentX;lastX=e.clientX;velX=0;});
+    document.addEventListener('mousemove',e=>{if(!isDragging)return;const dx=e.clientX-lastX;velX=dx*0.5;targetX=e.clientX-startX;lastX=e.clientX;if(Math.abs(dx)>4)hasDragged=true;scrollHint.classList.add('hidden');});
+    document.addEventListener('mouseup',()=>{isDragging=false;});
+    stage.addEventListener('click',e=>{if(hasDragged)e.stopPropagation();},true);
+    let touchStartX=0;
+    stage.addEventListener('touchstart',e=>{touchStartX=e.touches[0].clientX-currentX;velX=0;},{passive:true});
+    stage.addEventListener('touchmove',e=>{targetX=e.touches[0].clientX-touchStartX;scrollHint.classList.add('hidden');},{passive:true});
+    stage.addEventListener('wheel',e=>{e.preventDefault();const delta=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY;targetX-=delta;velX=0;scrollHint.classList.add('hidden');},{passive:false});
+    function updateCounter(){
+      const cards=document.querySelectorAll('.card');
+      let closest=0,minDist=Infinity;
+      cards.forEach((card,i)=>{
+        const dist=Math.abs(card.getBoundingClientRect().left+card.offsetWidth/2-window.innerWidth/2);
+        if(dist<minDist){minDist=dist;closest=i;}
+      });
+      counter.textContent=String(closest+1).padStart(2,'0')+' / '+String(cards.length).padStart(2,'0');
+    }
+
+    // ── DATOS DE CASOS ────────────────────────────────────
+    const cases=[
+      {
+        num:'Caso 01',
+        title:'El retrato',
+        desc:'Representar la vulnerabilidad de una persona a través de su expresión. No una tristeza obvia, sino ese cansancio acumulado que aparece cuando alguien ya no tiene energía para sostener una imagen de sí mismo.',
+        intencion:'Representar la vulnerabilidad de una persona a través de su expresión. No una tristeza obvia ni lágrimas, sino ese estado de cansancio acumulado que aparece en el rostro cuando alguien ya no tiene energía para sostener una imagen de sí mismo. La imagen debe sentirse documental, como si hubiera sido tomada en un momento real y no posado.',
+        promptBase:{
+          en:'"Photographic portrait of a middle-aged woman, direct gaze at camera, expression of exhaustion, natural side light, blurred neutral background, documentary style."',
+          es:'"Retrato fotográfico de una mujer de mediana edad, mirada directa a cámara, expresión de agotamiento, luz lateral natural, fondo neutro desenfocado, estilo documental."'
+        },
+        imgsBase:['caso1-1.jpg','caso1-2.jpg'],
+        iteraciones:[
+          {
+            titulo:'Iteración 1',
+            prompt:'"Photographic portrait of a middle-aged woman, direct gaze at camera, relaxed facial muscles showing deep fatigue rather than sadness, eyes slightly unfocused or vacant — not crying, not grieving, just emptied out. No visible emotion, only exhaustion that has settled into the face. Natural side light, soft shadows. Blurred neutral background, shallow depth of field. Documentary style, candid feeling, as if the subject forgot the camera was there. No dramatic expression, no tension in the jaw or brow."',
+            promptEs:'"Retrato fotográfico de una mujer de mediana edad, mirada directa a cámara, músculos faciales relajados que muestran fatiga profunda en lugar de tristeza, ojos levemente desenfocados o vacíos — sin llorar, sin afligirse, simplemente vaciada. Sin emoción visible, solo el agotamiento instalado en el rostro. Luz lateral natural, sombras suaves. Fondo neutro desenfocado, poca profundidad de campo. Estilo documental, sensación de imagen no posada, como si el sujeto hubiera olvidado que la cámara estaba ahí. Sin expresión dramática, sin tensión en la mandíbula ni en el ceño."',
+            razon:'El prompt base generó imágenes con tristeza activa: ceño fruncido, mandíbula tensa, expresión afligida. El modelo interpretó "exhaustion" como emoción visible en lugar de agotamiento instalado. Se precisaron tres correcciones: especificar músculos faciales relajados; describir la mirada como vacía o desenfocada; y reforzar la cualidad documental con "candid feeling" y la idea de que el sujeto olvidó la presencia de la cámara.',
+            resultado:'La imagen superior izquierda fue la más cercana a la intención. Párpados con peso físico, mirada sin destino, músculos en reposo. Sin embargo, apareció un elemento no instruido: enrojecimiento en las mejillas, que podía leerse como señal de llanto reciente.',
+            imgs:['caso1-3.jpg','caso1-4.jpg']
+          },
+          {
+            titulo:'Iteración 2',
+            prompt:'"Photographic portrait of a middle-aged woman, direct gaze at camera, relaxed facial muscles showing deep fatigue rather than sadness, eyes slightly unfocused or vacant — not crying, not grieving, just emptied out. No visible emotion, only exhaustion that has settled into the face. Even skin tone, no redness or flushing in the cheeks, matte complexion — but keep the physical weight of exhaustion visible in the face: heavy eyelids, slack muscles, the look of someone who has been tired for a long time, not just today. Natural side light, soft shadows. Blurred neutral background, shallow depth of field. Documentary style, candid feeling, as if the subject forgot the camera was there. No dramatic expression, no tension in the jaw or brow."',
+            promptEs:'"Retrato fotográfico de una mujer de mediana edad, mirada directa a cámara, músculos faciales relajados que muestran fatiga profunda en lugar de tristeza, ojos levemente desenfocados o vacíos — sin llorar, sin afligirse, simplemente vaciada. Sin emoción visible, solo el agotamiento instalado en el rostro. Tono de piel uniforme, sin enrojecimiento ni rubor en las mejillas, tez mate — pero manteniendo el peso físico del agotamiento visible en el rostro: párpados pesados, músculos distendidos, la apariencia de alguien que lleva mucho tiempo cansada, no solo hoy. Luz lateral natural, sombras suaves. Fondo neutro desenfocado, poca profundidad de campo. Estilo documental, sensación de imagen no posada, como si el sujeto hubiera olvidado que la cámara estaba ahí. Sin expresión dramática, sin tensión en la mandíbula ni en el ceño."',
+            razon:'El enrojecimiento en las mejillas de la imagen seleccionada en la iteración 1 introducía ambigüedad: podía leerse como signo de llanto reciente. Sin embargo, corregirlo directamente con "no redness" sin precaución generaba el riesgo de que el modelo vaciara también la expresión. Por eso se agregó la instrucción contrapuesta: "but keep the physical weight of exhaustion visible", con descriptores concretos para preservar la carga corporal que hacía funcionar la imagen anterior.',
+            resultado:'Se generaron dos variantes. Ambas eliminaron el enrojecimiento, pero perdieron el peso corporal del agotamiento. Los rostros quedaron más neutros y compuestos, con sensación de pose. La imagen de la iteración 1 sigue siendo más fiel a la intención original.',
+            imgs:['caso1-5.jpg','caso1-6.jpg']
+          }
+        ],
+        imgFinal:'caso1-3.jpg',
+        criterio:'Se seleccionó la variante izquierda de la iteración 1 porque es la imagen que mejor encarna la intención comunicacional original. Los párpados caídos tienen peso físico, no carga emocional. La mirada está presente pero sin destino: mira a cámara sin buscar nada. Los músculos faciales están en reposo, lo que comunica vaciamiento más que pena. La imagen no parece posada — tiene la textura de una foto tomada en un momento real.\n\nLas imágenes de la iteración 2 fueron descartadas porque, al intentar eliminar el enrojecimiento de las mejillas, el modelo compensó vaciando también la expresión. Los rostros resultantes quedaron más neutros y compuestos, con una presencia de cámara que devuelve la sensación de pose. La corrección cromática tuvo un costo expresivo que no valió la pena: se perdió el peso corporal del agotamiento que hacía funcionar la imagen de la iteración 1.\n\nElemento no instruido que persiste: el leve enrojecimiento en las mejillas puede leerse como señal de llanto reciente, pero no rompe la imagen. Queda registrado como límite del proceso en esta herramienta con este prompt.',
+        lecturaCritica:'Lo que persiste en esta imagen —un enrojecimiento que nadie pidió y que no se pudo quitar sin perder lo demás— es difícil de ubicar dentro de una idea tradicional de autoría. No es un error que se corrige ni una decisión que se toma: es algo que se termina aceptando porque el costo de eliminarlo era mayor que el de convivir con ello. La co-creación, vista así, no separa limpiamente lo que decide la diseñadora de lo que aporta el sistema — hay una zona intermedia donde ambas cosas se mezclan, y es justamente ahí donde se vuelve difícil decir con seguridad qué tan original es, en última instancia, el resultado.'
+      },
+      {
+        num:'Caso 02',
+        title:'La multitud',
+        desc:'Comunicar la experiencia de sentirse solo dentro de un entorno densamente poblado. Una figura perdida en la escena, sin ser el centro de atención sino una presencia pequeña dentro de un entorno que la supera.',
+        intencion:'Comunicar la experiencia de sentirse solo dentro de un entorno densamente poblado. No la soledad de un espacio vacío, sino la de una persona que está rodeada de gente y aun así aparece aislada. La figura humana debe estar presente pero perdida en la escena, sin ser el centro de atención sino una presencia pequeña dentro de un entorno que la supera.',
+        promptBase:{
+          en:'"Photograph of a crowded urban street at night, a single human figure seen from behind at the center of the composition, artificial lights, light rain, street-level perspective."',
+          es:'"Fotografía de una calle urbana concurrida de noche, una sola figura humana de espaldas en el centro de la composición, luces artificiales, lluvia leve, perspectiva desde el nivel de la calle."',
+          resultado:'El prompt base produjo dos resultados con el mismo problema de fondo: en ambos la figura es demasiado protagónica. En la variante izquierda, la figura de negro al centro tiene presencia visual clara y no llega a perderse entre la multitud — el entorno la rodea pero no la supera. En la variante derecha el problema es más evidente: la figura ocupa casi un tercio del encuadre y domina completamente la escena. Además, el letrero "NEW YORK SUN" ancla la imagen a una geografía específica, restándole universalidad. Lo que faltaba en ambas era la proporción correcta: una figura reconocible pero pequeña, superada por el entorno, visible pero no protagónica.'
+        },
+        imgsBase:['caso2-1.jpg','caso2-2.jpg'],
+        iteraciones:[
+          {
+            titulo:'Iteración 1',
+            prompt:'"Street photography of a dense crowd on a rainy urban street at night, one solitary figure seen from behind, small within the frame, surrounded by people who ignore her — she is present but peripheral, not the center of attention. Wide shot, city scale dwarfs the human figure. Artificial neon and streetlights, reflections on wet pavement, slight motion blur on the crowd. No specific city signage. Cinematic but not dramatic."',
+            promptEs:'"Fotografía de calle de una multitud densa en una calle urbana lluviosa de noche, una figura solitaria de espaldas, pequeña dentro del encuadre, rodeada de personas que la ignoran — presente pero periférica, no el centro de atención. Plano general, la escala de la ciudad empequeñece a la figura humana. Luces de neón y faroles artificiales, reflejos en el pavimento mojado, leve desenfoque de movimiento en la multitud. Sin cartelería urbana específica. Cinemático pero no dramático."',
+            razon:'Se introdujeron instrucciones de escala ("small within the frame", "city scale dwarfs the human figure", "wide shot") para que la figura fuera reconocible pero no dominante. Se reforzó la condición de aislamiento social ("surrounded by people who ignore her", "present but peripheral") y se eliminó la cartelería específica para evitar que el modelo anclara la imagen a una ciudad concreta, restándole universalidad.',
+            resultado:'La variante derecha logró la mejor aproximación: una mujer de espaldas con cartera blanca, correctamente proporcionada dentro del encuadre, rodeada de multitud en movimiento, con paleta fría de azules y verdes que reforzaba el aislamiento emocional. El único problema detectado fue una figura con chaqueta naranja en el primer plano que, por contraste cromático, competía visualmente con la protagonista y desviaba la jerarquía de lectura.',
+            imgs:['caso2-3.jpg','caso2-4.jpg']
+          },
+          {
+            titulo:'Iteración 2',
+            prompt:'"Street photography of a dense crowd on a rainy urban street at night, one solitary figure seen from behind, small within the frame, surrounded by people who ignore her — she is present but peripheral, not the center of attention. Wide shot, city scale dwarfs the human figure. Artificial neon and streetlights, reflections on wet pavement, slight motion blur on the crowd. No specific city signage. Cinematic but not dramatic. All figures wearing dark or muted colors — no warm, bright, or saturated clothing. Cold color palette throughout: blues, grays, and greens only."',
+            promptEs:'"Fotografía de calle de una multitud densa en una calle urbana lluviosa de noche, una figura solitaria de espaldas, pequeña dentro del encuadre, rodeada de personas que la ignoran — presente pero periférica, no el centro de atención. Plano general, la escala de la ciudad empequeñece a la figura humana. Luces de neón y faroles artificiales, reflejos en el pavimento mojado, leve desenfoque de movimiento en la multitud. Sin cartelería urbana específica. Cinemático pero no dramático. Todas las figuras visten colores oscuros o apagados — sin ropa cálida, brillante o saturada. Paleta de color fría en toda la imagen: solo azules, grises y verdes."',
+            razon:'Se intentó corregir el problema de la figura naranja aplicando una restricción global de paleta. El error fue tratar un problema puntual de jerarquía visual con una solución de alcance total: al forzar una paleta monocromática fría en todos los elementos, el modelo eliminó también los contrastes cromáticos que daban profundidad y atmósfera a la escena.',
+            resultado:'Ambas variantes perdieron la atmósfera urbana nocturna que hacía funcionar la iteración 1. Los resultados quedaron grises y planos, casi monocromáticos. La variante izquierda presentó un problema adicional: la figura solitaria quedó demasiado aislada en el centro de una plaza casi vacía, casi como una figura heroica — exactamente lo opuesto a "perdida entre la multitud".',
+            imgs:['caso2-5.jpg','caso2-6.jpg']
+          },
+          {
+            titulo:'Iteración 3',
+            prompt:'"Street photography of a dense crowd on a rainy urban street at night, one solitary figure seen from behind, small and centered in the mid-ground, surrounded by people who ignore her — present but peripheral, not the center of attention. Wide shot, city scale dwarfs the human figure. Artificial neon and streetlights in green and blue tones, reflections on wet pavement, slight motion blur on the crowd. No specific city signage. Cinematic but not dramatic. No figure wearing orange, red, or any warm saturated color."',
+            promptEs:'"Fotografía de calle de una multitud densa en una calle urbana lluviosa de noche, una figura solitaria de espaldas, pequeña y centrada en el plano medio, rodeada de personas que la ignoran — presente pero periférica, no el centro de atención. Plano general, la escala de la ciudad empequeñece a la figura humana. Luces de neón y faroles artificiales en tonos verdes y azules, reflejos en el pavimento mojado, leve desenfoque de movimiento en la multitud. Sin cartelería urbana específica. Cinemático pero no dramático. Ninguna figura viste naranja, rojo ni ningún color cálido saturado."',
+            razon:'Se corrigió el error de la iteración 2 volviendo a la atmósfera que hacía funcionar la escena y sustituyendo la restricción global por una prohibición de color cálido en todas las figuras, para recuperar la libertad cromática del ambiente y los reflejos.',
+            resultado:'Ninguna de las dos variantes resolvió el problema de forma satisfactoria. El modelo siguió colando acentos cálidos desde otros elementos y la composición perdió parte de la densidad urbana de la iteración 1. Se decidió intentar una última corrección más quirúrgica.',
+            imgs:['caso2-7.jpg','caso2-8.jpg']
+          },
+          {
+            titulo:'Iteración 4',
+            prompt:'"Street photography of a dense crowd on a rainy urban street at night, one solitary figure seen from behind, small within the frame, surrounded by people who ignore her — she is present but peripheral, not the center of attention. Wide shot, city scale dwarfs the human figure. Artificial neon and streetlights, reflections on wet pavement, slight motion blur on the crowd. No specific city signage. Cinematic but not dramatic. No figure in the foreground wearing orange, red, yellow, or any warm saturated color."',
+            promptEs:'"Fotografía de calle de una multitud densa en una calle urbana lluviosa de noche, una figura solitaria de espaldas, pequeña dentro del encuadre, rodeada de personas que la ignoran — presente pero periférica, no el centro de atención. Plano general, la escala de la ciudad empequeñece a la figura humana. Luces de neón y faroles artificiales, reflejos en el pavimento mojado, leve desenfoque de movimiento en la multitud. Sin cartelería urbana específica. Cinemático pero no dramático. Ninguna figura en el primer plano viste naranja, rojo, amarillo ni ningún color cálido saturado."',
+            razon:'Se retomó exactamente el prompt de la iteración 1 añadiendo únicamente una instrucción al final: prohibir colores cálidos saturados en el primer plano. La lógica fue quirúrgica: no tocar nada de lo que funcionaba, corregir únicamente el elemento que fallaba.',
+            resultado:'Esta iteración reveló un comportamiento significativo del modelo: al intentar representar una figura solitaria en medio de la multitud, la IA tiende a interpretarlo de manera literal, destacando visualmente a esa figura para que sea inequívocamente reconocible. La variante derecha es el ejemplo más claro: la figura aparece parada, quieta y de costado, casi como si posara para ser vista, completamente disociada del movimiento de quienes la rodean. Lejos de perderse entre la multitud, se convierte en el punto focal indiscutible de la escena — exactamente lo contrario de la intención original.',
+            imgs:['caso2-9.jpg','caso2-10.jpg']
+          }
+        ],
+        imgFinal:'caso2-4.jpg',
+        criterio:'Se selecciona la variante derecha de la iteración 1 como imagen final del caso, a pesar de que el proceso de iteración fue iniciado para corregir un defecto presente en ella.\n\nLa imagen logra comunicar la intención central: una figura humana solitaria, pequeña y de espaldas, rodeada de una multitud que no la mira. La escala está resuelta correctamente — la figura existe y puede identificarse, pero no domina el encuadre. La paleta de azules y verdes fríos refuerza el aislamiento emocional sin subrayarlo.\n\nEl proceso de iteración evidenció un comportamiento estructural de la herramienta: Recraft AI tiende a interpretar la instrucción "figura solitaria" de manera literal, destacando visualmente a esa figura para hacerla inequívocamente reconocible. La iteración 4 lo ilustra con claridad en su variante derecha — la figura aparece parada, quieta y de costado, como si posara para ser vista, exactamente lo contrario de la intención original. El elemento no instruido — la figura naranja — y esta tendencia del modelo a resolver la ambigüedad visual a favor de la visibilidad quedan documentados como límites operativos de la herramienta.',
+        lecturaCritica:'Que un mismo comportamiento se repita en cuatro intentos distintos, sin importar cómo se reformule la instrucción, dice algo sobre los límites de lo que una diseñadora puede realmente decidir dentro de un proceso de co-creación. La intención estaba clara y se mantuvo firme durante todo el proceso; lo que cambió, una y otra vez, fue la forma en que el sistema la interpretó, siempre hacia el mismo lugar. Esto abre una pregunta incómoda para la idea de originalidad en estos procesos: si el sistema tiende sistemáticamente a un mismo tipo de resolución, ¿cuánto de lo "nuevo" en la imagen final depende de la intención de quien la pidió, y cuánto depende simplemente de aquello que el sistema ya sabía hacer de antemano?'
+      },
+      {
+        num:'Caso 03',
+        title:'El objeto aislado',
+        desc:'Transmitir el paso del tiempo a través de un objeto cotidiano. No deterioro extremo, sino las marcas sutiles que deja el uso prolongado — la pátina de lo que ha sido tocado muchas veces.',
+        intencion:'Transmitir el paso del tiempo a través de un objeto cotidiano. No mediante una imagen de destrucción ni de deterioro extremo, sino a través de las marcas sutiles que deja el uso prolongado — la madera desgastada, las superficies rayadas, la pátina de lo que ha sido tocado muchas veces. El objeto debe comunicar que tuvo una historia sin necesidad de mostrarla.',
+        promptBase:{
+          en:'"Product photograph of an old wooden chair on a white background, soft overhead light, defined shadow, visible detail of the wood wear."',
+          es:'"Fotografía de producto de una silla de madera antigua sobre fondo blanco, luz suave cenital, sombra definida, detalle visible del desgaste de la madera."',
+          resultado:'El prompt base generó imágenes con lenguaje visual de catálogo: fondo blanco clínico, luz cenital que aplana las texturas, objeto presentado como mercancía. El término "product photograph" instruye al modelo a aislar el objeto de forma neutral, lo que contradecía directamente la intención de comunicar historia y uso. Las imágenes se veían antiguas, pero no usadas.'
+        },
+        imgsBase:['caso3-1.jpg','caso3-2.jpg'],
+        iteraciones:[
+          {
+            titulo:'Iteración 1',
+            prompt:'"Studio photograph of a single old wooden chair, three-quarter view, warm directional light from one side casting a long shadow, dark or warm gray seamless background, the chair isolated but not clinical — lit like an art object, not a product. Visible wear on the seat surface and front edge, uneven patina, aged wood texture."',
+            promptEs:'"Fotografía de estudio de una sola silla de madera antigua, vista en tres cuartos, luz cálida direccional desde un lado proyectando una sombra larga, fondo gris oscuro o cálido sin costuras, la silla aislada pero no clínica — iluminada como un objeto de arte, no como un producto. Desgaste visible en la superficie del asiento y el borde delantero, pátina irregular, textura de madera envejecida."',
+            razon:'Se reemplazó "product photograph" por "studio photograph" y el fondo blanco por gris oscuro cálido para dar atmósfera sin añadir narrativa. La luz cenital se reemplazó por luz lateral direccional, ya que la luz rasante hace visibles las texturas del desgaste al proyectar sombra sobre los rayones y marcas.',
+            resultado:'El fondo oscuro resolvió el problema del lenguaje de catálogo, pero introdujo uno nuevo: el fondo tenía demasiado protagonismo visual y competía con la silla. La atmósfera la generaba el fondo, no el objeto. Eso contradecía la intención, que requiere que la historia la cuente el objeto solo.',
+            imgs:['caso3-3.jpg','caso3-4.jpg']
+          },
+          {
+            titulo:'Iteración 2',
+            prompt:'"Studio photograph of a single old wooden chair, three-quarter view, warm directional light from one side, gentle shadow — no dramatic contrast. Light warm gray seamless background, not white and not dark — neutral enough to disappear, warm enough to feel analog. The background should recede completely, leaving the chair as the only presence in the frame. The chair is isolated but not clinical — lit like an art object, not a product. Wood shows uneven patina: seat surface darker and smoother than the rest from years of contact with clothing and skin, front edge of the seat visibly worn from repeated sitting and standing, slight asymmetry in aging as if always used by the same person. Scratches and marks distributed unevenly, concentrated where hands and body would have touched. The object looks used, not just old."',
+            promptEs:'"Fotografía de estudio de una sola silla de madera antigua, vista en tres cuartos, luz cálida direccional desde un lado, sombra suave — sin contraste dramático. Fondo gris cálido claro sin costuras, ni blanco ni oscuro — lo suficientemente neutro para desaparecer, lo suficientemente cálido para sentirse analógico. El fondo debe retroceder completamente, dejando la silla como única presencia en el encuadre. La silla está aislada pero no clínica — iluminada como objeto de arte, no como producto. La madera muestra una pátina irregular: superficie del asiento más oscura y lisa que el resto por años de contacto con ropa y piel, borde delantero del asiento visiblemente desgastado por el acto repetido de sentarse y levantarse, leve asimetría en el envejecimiento como si siempre la hubiera usado la misma persona. Rayones y marcas distribuidos de forma irregular, concentrados donde las manos y el cuerpo habrían tocado. El objeto se ve usado, no solo viejo."',
+            razon:'Se corrigió el problema del fondo con una instrucción precisa: "neutral enough to disappear, warm enough to feel analog". El objetivo era encontrar el punto medio entre el blanco clínico del prompt base y el gris oscuro dramático de la iteración 1. Además se introdujo por primera vez la descripción del desgaste localizado por puntos de contacto humano y la instrucción "the object looks used, not just old" como criterio global.',
+            resultado:'El fondo encontró el punto correcto. Sin embargo, el encuadre generó dos resultados opuestos: la variante con la silla completa no permitía apreciar los desgastes por la distancia, y la variante más cercana mostraba mejor el detalle pero los desgastes quedaban concentrados solo en el asiento. El resto de la pieza — patas, travesaños, respaldo — se veía relativamente limpia.',
+            imgs:['caso3-5.jpg','caso3-6.jpg']
+          },
+          {
+            titulo:'Iteración 3',
+            prompt:'"Studio photograph of a single old wooden chair, close three-quarter view showing the seat and back, warm directional light from one side, gentle shadow — no dramatic contrast. Light warm gray seamless background, neutral enough to disappear, warm enough to feel analog. The chair is isolated but not clinical — lit like an art object, not a product. Wood shows uneven patina throughout the entire piece: seat surface darker and smoother than the rest from years of skin and clothing contact, front edge of the seat rounded and worn from repeated sitting and standing, backrest top rail worn smooth where hands would have gripped it, chair legs scuffed near the floor where they scraped against surfaces, stretchers between legs polished from incidental foot contact. Subtle scratches and small marks distributed across the whole piece — not damage, just the quiet accumulation of use. Slight asymmetry in aging as if always used by the same person in the same way. The object looks used, not just old. No single area of wear should dominate — the history is distributed across the whole object."',
+            promptEs:'"Fotografía de estudio de una sola silla de madera antigua, vista en tres cuartos cercana mostrando el asiento y el respaldo, luz cálida direccional desde un lado, sombra suave — sin contraste dramático. Fondo gris cálido claro sin costuras, lo suficientemente neutro para desaparecer, lo suficientemente cálido para sentirse analógico. La silla está aislada pero no clínica — iluminada como objeto de arte, no como producto. La madera muestra pátina irregular en toda la pieza: superficie del asiento más oscura y lisa por años de contacto con piel y ropa, borde delantero del asiento redondeado y desgastado por el acto repetido de sentarse y levantarse, travesaño superior del respaldo liso donde las manos lo habrían sujetado, patas rayadas cerca del suelo donde rozaron superficies, travesaños entre patas pulidos por el contacto incidental del pie. Rayones sutiles y marcas pequeñas distribuidos en toda la pieza — no daño, solo la acumulación silenciosa del uso. Leve asimetría en el envejecimiento como si siempre la hubiera usado la misma persona de la misma manera. El objeto se ve usado, no solo viejo. Ningún área de desgaste debe dominar — la historia está distribuida en todo el objeto."',
+            razon:'El problema de la iteración 2 era que el desgaste quedaba concentrado solo en el asiento. Se expandió la descripción a cada punto de contacto humano específico: el travesaño superior del respaldo, las patas cerca del suelo, los travesaños inferiores pulidos por el roce del pie. La instrucción "no single area of wear should dominate" buscaba que el modelo distribuyera el envejecimiento sin amplificar su intensidad.',
+            resultado:'La variante izquierda es la imagen final del caso. El desgaste quedó distribuido en toda la pieza — asiento, patas, travesaños y respaldo — con la intensidad correcta: visible pero no extremo. El fondo gris cálido desaparece como soporte. El encuadre cercano permite leer los detalles sin perder la estructura del objeto.',
+            imgs:['caso3-7.jpg','caso3-8.jpg']
+          },
+          {
+            titulo:'Iteración 4',
+            prompt:'"Studio photograph of a single old wooden chair, close three-quarter view, warm directional light from one side, gentle shadow — no dramatic contrast. Light warm gray seamless background, neutral enough to disappear, warm enough to feel analog. The chair is isolated but not clinical — lit like an art object, not a product. Wood shows subtle, quiet signs of long use: seat surface slightly darker and smoother from years of contact, edges gently rounded by handling, small scratches and minor scuffs on the legs — nothing severe, nothing broken. The wear is modest and uneven, the kind that accumulates slowly over decades without anyone noticing. The object looks quietly used, not damaged or deteriorated. Restraint in aging: subtle, not extreme."',
+            promptEs:'"Fotografía de estudio de una sola silla de madera antigua, vista en tres cuartos cercana, luz cálida direccional desde un lado, sombra suave — sin contraste dramático. Fondo gris cálido claro sin costuras, lo suficientemente neutro para desaparecer, lo suficientemente cálido para sentirse analógico. La silla está aislada pero no clínica — iluminada como objeto de arte, no como producto. La madera muestra signos sutiles y silenciosos de uso prolongado: superficie del asiento ligeramente más oscura y lisa por años de contacto, bordes suavemente redondeados por el manejo, pequeños rayones y marcas menores en las patas — nada severo, nada roto. El desgaste es modesto e irregular, del tipo que se acumula lentamente durante décadas sin que nadie lo note. El objeto se ve calladamente usado, no dañado ni deteriorado. Contención en el envejecimiento: sutil, no extremo."',
+            razon:'Tras la iteración 3, se intentó moderar la intensidad del desgaste sustituyendo la descripción detallada de cada punto de contacto por una instrucción de contención global: "restraint in aging: subtle, not extreme". El objetivo era preservar la distribución del desgaste lograda en la iteración 3 pero reduciendo su intensidad.',
+            resultado:'El zoom resultó excesivo en ambas variantes — la silla pierde contexto estructural y el encuadre no permite leer el objeto completo. Esta iteración fue descartada. Evidencia un comportamiento recurrente de la herramienta: los ajustes de contención tienden a alterar variables no instruidas — en este caso, la distancia focal — al intentar moderar otras.',
+            imgs:['caso3-9.jpg','caso3-10.jpg']
+          }
+        ],
+        imgFinal:'caso3-7.jpg',
+        criterio:'Se selecciona la variante izquierda de la iteración 3 como imagen final del caso. Es la única imagen del proceso donde el objeto cumple completamente la intención comunicacional.\n\nEl desgaste está distribuido en toda la pieza — asiento, borde delantero, patas, travesaños y respaldo — con la intensidad correcta: visible pero no extremo. No hay una zona nueva al lado de una zona vieja. La pátina es pareja e irregular a la vez, como corresponde a un objeto que fue usado completo, no solo sentado.\n\nEl fondo gris cálido desaparece como soporte sin desaparecer como atmósfera. No compite con la silla ni la esteriliza. El encuadre cercano pero no excesivo permite leer los detalles del desgaste sin perder la estructura del objeto. La iteración 4 demostró que un zoom mayor eliminaba ese equilibrio.\n\nElemento notable del proceso: la corrección más efectiva no fue la última iteración sino la tercera. La iteración 4, diseñada para moderar lo conseguido en la 3, resultó en un encuadre excesivo que descartó ambas variantes. Esto evidencia un comportamiento recurrente de la herramienta: los ajustes de contención tienden a alterar variables no instruidas — en este caso, la distancia focal — al intentar moderar otras.',
+        lecturaCritica:'Este caso pone en duda una idea instalada sobre la co-creación con inteligencia artificial: que iterar es acercarse, paso a paso, a una intención cada vez más precisa. Acá, precisar una parte del proceso implicó perder otra — la imagen no avanzó en línea recta hacia lo buscado, sino en un equilibrio inestable entre lo que se ganaba y lo que se sacrificaba sin querer. Si cada ajuste reorganiza partes de la imagen que no fueron tocadas directamente, entonces la autoría dentro de este tipo de proceso no puede pensarse como una serie de decisiones aisladas y acumulativas, sino como una negociación constante con un sistema que responde de forma interconectada, muchas veces impredecible.'
+      },
+      {
+        num:'Caso 04',
+        title:'El encuentro',
+        desc:'Representar la ambigüedad emocional entre dos personas de modo que no quede claro si lo que las une es afecto, tensión o distancia. La imagen no debe resolver la relación entre ambas figuras.',
+        intencion:'Representar la ambigüedad emocional entre dos personas de modo que no quede claro si lo que las une es afecto, tensión o distancia. La imagen no debe resolver la relación entre ambas figuras — el espectador debe poder interpretarla de más de una manera. Esto implica evitar gestos que lean directamente como abrazo, confrontación o indiferencia, y mantener la escena en un estado intermedio que no cierre el sentido.',
+        promptBase:{
+          en:'"Documentary photograph of two people standing facing each other in an interior space, neutral expressions, ambiguous distance between them, natural window light, no visible context clues about their relationship."',
+          es:'"Fotografía documental de dos personas de pie frente a frente en un espacio interior, expresiones neutras, distancia ambigua entre ellas, luz natural de ventana, sin indicios visibles sobre su relación."',
+          resultado:'El prompt base generó imágenes con encuadre cercano que expone los rostros con demasiada nitidez. Cuando los gestos faciales son legibles, el espectador los clasifica automáticamente y la ambigüedad se rompe. Además, la instrucción "facing each other" llevó al modelo a construir una relación visual resuelta: en una variante la asimetría de miradas generaba indiferencia clara; en la otra la proximidad frontal generaba tensión de confrontación. Ninguna dejaba al espectador en estado de interpretación abierta.'
+        },
+        imgsBase:['caso4-1.jpg','caso4-2.jpg'],
+        iteraciones:[
+          {
+            titulo:'Iteración 1',
+            prompt:'"Documentary photograph of two people standing close together in an empty interior space, bodies close but not touching, neither looking directly at the other nor clearly turning away — the gaze of each is slightly off, undefined. No readable emotion on either face. The spatial relationship between them is ambiguous: it could be closeness, it could be distance, it could be the moment before something or the moment after. Natural window light from one side, empty room, bare walls. The image must not resolve the emotional relationship between the two figures — no gesture, expression or posture should suggest affection, conflict or indifference clearly. Cinematic, still, quiet."',
+            promptEs:'"Fotografía documental de dos personas de pie cerca una de la otra en un espacio interior vacío, cuerpos cercanos pero sin tocarse, ninguno mirando directamente al otro ni claramente mirando hacia otro lado — la mirada de cada uno está ligeramente indefinida. Sin emoción legible en ningún rostro. La relación espacial entre ellos es ambigua: podría ser cercanía, podría ser distancia, podría ser el momento antes de algo o el momento después. Luz natural de ventana desde un lado, habitación vacía, paredes desnudas. La imagen no debe resolver la relación emocional entre las dos figuras — ningún gesto, expresión o postura debe sugerir claramente afecto, conflicto o indiferencia. Cinematográfico, quieto, silencioso."',
+            razon:'Se eliminó "facing each other" porque el modelo lo interpreta como construir una relación visual resuelta. Se reemplazó por una descripción de miradas indefinidas que no se encuentran ni se evitan. Se agregó explícitamente que la imagen "no debe resolver la relación emocional" como instrucción directa al modelo. Se amplificó el encuadre para alejar los rostros y reducir la legibilidad de los gestos faciales.',
+            resultado:'La variante derecha fue la más cercana a la intención: las cabezas inclinadas hacia el centro y las miradas que convergen sin encontrarse crean una tensión sin nombre que puede leerse como conflicto contenido, atracción o el peso de algo no dicho. El encuadre más abierto impide que los rostros sean completamente legibles, lo que obliga al espectador a construir su propia interpretación. Sin embargo, la postura inclinada aún se acercaba a la confrontación.',
+            imgs:['caso4-3.jpg','caso4-4.jpg']
+          },
+          {
+            titulo:'Iteración 2',
+            prompt:'"Documentary photograph of two people standing in an interior space, bodies slightly angled toward each other but not fully facing — somewhere between turning toward and turning away. Heads upright, neither bowed nor lifted. Eyes not meeting, but not clearly avoiding either — each gaze directed slightly past the other. No readable emotion, no gesture that resolves into affection, conflict or indifference. The tension between them is present but unnamed. Natural window light from one side casting soft shadows. Bare walls, empty room. Cinematic, still, quiet. The image should leave the viewer uncertain about what connects these two people."',
+            promptEs:'"Fotografía documental de dos personas de pie en un espacio interior, cuerpos levemente angulados el uno hacia el otro pero sin enfrentarse completamente — en algún punto entre girarse hacia y girarse para alejarse. Cabezas erguidas, sin inclinar ni levantar. Miradas que no se encuentran pero tampoco se evitan claramente — cada una dirigida levemente más allá de la otra. Sin emoción legible, sin gesto que resuelva en afecto, conflicto o indiferencia. La tensión entre ellos está presente pero sin nombre. Luz natural de ventana desde un lado proyectando sombras suaves. Paredes desnudas, habitación vacía. Cinematográfico, quieto, silencioso. La imagen debe dejar al espectador sin certeza sobre qué conecta a estas dos personas."',
+            razon:'Se intentó corregir la inclinación de cabezas que en la iteración 1 acercaba la imagen a la confrontación. Se agregó "heads upright" y "eyes directed slightly past the other" para mantener la carga sin resolver la mirada. La lógica fue quirúrgica: preservar la tensión corporal pero redirigir las miradas.',
+            resultado:'El modelo interpretó la corrección vaciando la relación en lugar de matizarla. Las dos variantes mostraron figuras que coexisten sin ninguna carga entre ellas. Al pedirle que eliminara la legibilidad de la emoción, eliminó la emoción completa. Esto evidencia un comportamiento estructural: el modelo no puede sostener un estado emocional intermedio entre dos figuras — o resuelve la relación o la elimina.',
+            imgs:['caso4-5.jpg','caso4-6.jpg']
+          }
+        ],
+        imgFinal:'caso4-4.jpg',
+        criterio:'Se selecciona la variante derecha de la iteración 1 como imagen final del caso.\n\nEs la imagen que mejor sostiene el estado intermedio que pide la intención: las cabezas inclinadas hacia el centro y las miradas que convergen sin encontrarse generan una tensión sin nombre que puede leerse como conflicto contenido, atracción o el peso de algo no dicho. El espectador no puede resolver qué conecta a las dos figuras — y esa imposibilidad es precisamente lo que la intención comunicacional buscaba.\n\nEl encuadre más abierto cumple una función clave: al alejar los rostros y reducir la nitidez de los gestos faciales, impide que el espectador clasifique la expresión automáticamente. La tensión viene de los cuerpos y la proximidad, no de los gestos legibles.\n\nEl proceso reveló dos límites estructurales de la herramienta. Primero: el encuadre cercano cierra el sentido porque expone los gestos faciales y el espectador los clasifica. Segundo: el modelo no puede sostener un estado emocional intermedio entre dos figuras humanas — cuando se le pide matizar una emoción, tiende a eliminarla por completo. La iteración 2 lo ilustra con claridad: al intentar corregir la inclinación que leía como confrontación, el modelo vació completamente la relación entre las figuras.',
+        lecturaCritica:'Que el sistema no lograra sostener un estado emocional intermedio —ni afecto, ni distancia, ni conflicto, sino algo entre medio— revela un límite distinto a los de los otros casos: no es un sesgo hacia cierto tipo de imagen, sino una dificultad para trabajar con la ambigüedad misma. Esto es especialmente relevante para pensar la co-creación, porque hay ideas originales que dependen justamente de no resolverse del todo, y frente a esas ideas el proceso compartido con el sistema no logra sostener la incertidumbre que la intención necesitaba — o la resuelve, o la vacía, sin término medio.'
+      },
+      {
+        num:'Caso 05',
+        title:'La referencia cultural local',
+        desc:'Una escena de vida cotidiana con identidad chilena específica. No una imagen genérica de "lo latinoamericano", sino la luz, los colores y la escala humana de un mercado popular en Santiago.',
+        intencion:'Representar una escena de vida cotidiana con identidad chilena específica. No una imagen genérica de "lo latinoamericano" construida desde estereotipos visuales, sino una escena que tenga las características propias de un mercado popular chileno — la luz, los colores, la mezcla de personas, la escala humana. La especificidad local es deliberada: Chile tiene rasgos visuales propios que lo distinguen de otros contextos latinoamericanos, y ese nivel de precisión en la instrucción permite observar con más claridad si el sistema es capaz de responder a una identidad situada o si tiende a producir una representación genérica.',
+        promptBase:{
+          en:'"Documentary photograph of a popular Chilean market, midday light, people of different ages, wide shot, documentary style, urban neighborhood context in Santiago de Chile."',
+          es:'"Fotografía documental de un mercado popular chileno, luz de mediodía, personas de distintas edades, plano general, estilo documental, contexto urbano de barrio en Santiago de Chile."',
+          resultado:'La escala y el formato funcionaron bien — plano general, muchas personas, puestos de mercado, luz de mediodía — y la atmósfera documental se sostuvo, sin dramatismo ni filtros, con luz natural y dura. Sin embargo, ninguna de las dos imágenes correspondía a Chile: la variante izquierda tenía arquitectura, disposición de puestos y paleta de colores propias de un mercado brasileño o colombiano, con suelo de tierra apisonada y tendidos de ropa ajenos a La Vega. La variante derecha incluía un letrero "Mercado San Francisco La Candelaria", que ancla la imagen en un barrio de Bogotá, Colombia. El modelo usó su base de datos de mercados latinoamericanos y produjo una imagen genérica que luego etiquetó con un topónimo cualquiera de la región — la especificidad del prompt no produjo especificidad en el resultado.'
+        },
+        imgsBase:['caso5-1.jpg','caso5-2.jpg'],
+        iteraciones:[
+          {
+            titulo:'Iteración 1',
+            prompt:'"Documentary photograph of La Vega Central market in Santiago de Chile, midday light, concrete floor, metal roof structures, vendors selling fruits and vegetables, people of different ages walking through, mix of informal stalls and permanent structures. Chilean urban architecture visible in background — low-rise concrete buildings, Andean foothills. No tropical vegetation, no colonial architecture. Wide shot, street level, documentary style."',
+            promptEs:'"Fotografía documental del mercado La Vega Central en Santiago de Chile, luz de mediodía, piso de cemento, estructuras de techo metálico, vendedores de frutas y verduras, personas de distintas edades circulando, mezcla de puestos informales y estructuras permanentes. Arquitectura urbana chilena visible al fondo — edificios de hormigón de baja altura, precordillera. Sin vegetación tropical, sin arquitectura colonial. Plano general, a nivel de calle, estilo documental."',
+            razon:'Se nombró La Vega Central específicamente, se describieron rasgos arquitectónicos propios de Santiago — edificios de hormigón de baja altura, cordillera al fondo — y se excluyeron explícitamente elementos que el modelo asocia genéricamente con "latinoamericano" pero que no corresponden a Chile.',
+            resultado:'Mejoró la estructura: la disposición de los puestos bajo techos metálicos se acercó a La Vega. Sin embargo persistió una paleta cálida anaranjada y una arquitectura de fondo con ladrillo visto y montañas más redondeadas y áridas, rasgos que remiten más a Colombia o Perú que a Santiago.',
+            imgs:['caso5-3.jpg','caso5-4.jpg']
+          },
+          {
+            titulo:'Iteración 2',
+            prompt:'"Documentary photograph of La Vega Central market in Santiago de Chile, midday light with cool grey-blue sky, concrete floor, metal roof structures, vendors selling fruits and vegetables, people of different ages walking through. Background: low-rise concrete and plastered buildings from the 1960s–1980s, no exposed brick. Andean mountain range visible in background — high, snow-capped peaks, not rounded hills. Color palette cool and slightly desaturated, not warm or tropical. Wide shot, street level, documentary style. No colonial architecture, no tropical colors, no warm orange light."',
+            promptEs:'"Fotografía documental del mercado La Vega Central en Santiago de Chile, luz de mediodía con cielo gris-azulado frío, piso de cemento, estructuras de techo metálico, vendedores de frutas y verduras, personas de distintas edades circulando. Fondo: edificios de hormigón y estuco de los años 1960–1980, sin ladrillo a la vista. Cordillera de los Andes visible al fondo — picos altos y nevados, no colinas redondeadas. Paleta de color fría y levemente desaturada, no cálida ni tropical. Plano general, a nivel de calle, estilo documental. Sin arquitectura colonial, sin colores tropicales, sin luz cálida anaranjada."',
+            razon:'Se corrigieron los tres elementos identificados como genéricos: la cordillera imponente y nevada — rasgo muy reconocible de Santiago —, una colorimetría más fría y gris en lugar de la paleta cálida típica de "latinoamericano genérico", y edificios de hormigón y estuco de los años 60-80 en lugar de ladrillo visto.',
+            resultado:'La cordillera nevada apareció, aunque de forma exagerada, y la colorimetría fría mejoró. Sin embargo los techos de los puestos se volvieron desproporcionadamente grandes — dejando de leerse como feria y pareciendo más una bodega — y los edificios de fondo se leyeron como demasiado viejos y deteriorados, evocando un barrio pobre latinoamericano genérico antes que un barrio céntrico de Santiago.',
+            imgs:['caso5-5.jpg','caso5-6.jpg']
+          },
+          {
+            titulo:'Iteración 3',
+            prompt:'"Documentary photograph of La Vega Central market in Santiago de Chile, midday light, cool blue-grey sky. Market stalls at human scale with low metal or corrugated roofs. Vendors selling fruits and vegetables in wooden crates. People of different ages walking through. Background: ordinary Santiago urban buildings — a mix of residential and commercial, no specific style, clean facades, not deteriorated, not colonial, not favela-like. Andean snow-capped mountains faintly visible above the roofline. Color palette cool and slightly desaturated, neutral, not warm or tropical. Wide shot, street level, documentary style."',
+            promptEs:'"Fotografía documental del mercado La Vega Central en Santiago de Chile, luz de mediodía, cielo gris-azulado frío. Puestos de mercado a escala humana con techos bajos, metálicos o de zinc corrugado. Vendedores de frutas y verduras en cajones de madera. Personas de distintas edades circulando. Fondo: edificios urbanos comunes de Santiago — mezcla de uso residencial y comercial, sin estilo específico, fachadas limpias, no deterioradas, no coloniales, sin aspecto de favela. Cordillera nevada apenas visible sobre la línea de techos. Paleta de color fría y levemente desaturada, neutra, no cálida ni tropical. Plano general, a nivel de calle, estilo documental."',
+            razon:'Se corrigió un error de la propuesta anterior, que atribuía la extrañeza de los edificios a su época de construcción. La Vega está en Recoleta, pleno centro de Santiago, con una mezcla real de edificios nuevos y antiguos, ninguno con aspecto de favela ni de arquitectura colonial. El problema no era la época sino la textura y el deterioro visual con que el modelo los generaba. Se reemplazó la descripción de época y estilo por "edificios urbanos comunes de Santiago, fachadas limpias, no deterioradas", y se ajustó el tamaño de los techos de los puestos a "bajos" para corregir el problema de escala de la iteración anterior.',
+            resultado:'La variante izquierda fue la mejor lograda como imagen general: cordillera nevada de fondo, puestos a escala humana, gente circulando, colorimetría fría y neutra — se lee como una feria chilena aunque no reproduzca específicamente La Vega. Persisten limitaciones: la cantidad de edificios de fondo es excesiva y algunos no son representativos de Santiago, y los puestos muestran cajas y pallets visibles al frente, algo poco característico de cómo los feriantes chilenos exhiben su mercadería. En cuanto a los puestos específicamente, la variante derecha de la iteración 1 seguía siendo más fiel: mejor disposición, mercadería expuesta al frente, mejor escala.',
+            imgs:['caso5-7.jpg','caso5-8.jpg']
+          }
+        ],
+        imgFinal:'caso5-7.jpg',
+        criterio:'Se mantiene como imagen final la variante izquierda de la iteración 3 porque gana como imagen general: reúne la cordillera nevada de fondo, puestos a escala humana, gente circulando y una colorimetría más fría y neutra, elementos que en conjunto se leen como una feria chilena. La variante derecha de la iteración 1 sigue siendo superior en un aspecto puntual — la disposición y escala de los puestos mismos — pero carece del contexto urbano correcto.\n\nEl hallazgo central del caso es que ninguna iteración logró resolver simultáneamente los puestos y el entorno urbano con la especificidad que pedía la intención comunicacional: el modelo puede resolver uno u otro, pero no ambos a la vez. Los pallets y cajas visibles al frente de los puestos, presentes en varias iteraciones, son reveladores en este sentido: el modelo no cuenta con una representación interna de cómo se organiza específicamente una feria chilena, sino que genera una feria genérica latinoamericana a la que va agregando elementos reconocibles — cordillera, nombres de lugares, paleta de color — sin llegar a una identidad visual situada.\n\nQueda registrado como límite del proceso: el modelo no tiene una representación visual de Chile como identidad situada, sino que construye "latinoamericano genérico" con elementos reconocibles añadidos.',
+        lecturaCritica:'Que el sistema entregara primero un mercado brasileño y luego uno colombiano, pese a la instrucción explícita de "Santiago de Chile", desplaza la tensión de lo individual a lo colectivo: no se trata de cuánto se precisó el prompt, sino de qué mundo visual conoce el sistema con el que se está co-creando. Un modelo entrenado con una idea sólida de "mercado latinoamericano genérico" y una idea débil de Chile como identidad visual propia no puede compensarse solo con mejores instrucciones. Esto interpela directamente la pregunta por la originalidad: si el sistema con el que se co-crea arrastra de base ciertos vacíos o sesgos culturales, ¿qué tan "propia" o "situada" puede ser una imagen construida junto a él?'
+      },
+    ];
+
+    // ── LIGHTBOX ──────────────────────────────────────────
+    window.openLightbox=function(src){
+      document.getElementById('lightboxImg').src=src;
+      document.getElementById('lightbox').classList.add('open');
+    };
+    window.closeLightbox=function(){
+      document.getElementById('lightbox').classList.remove('open');
+    };
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeLightbox();closeReflexionIntro();}});
+
+    function makeImg(src, alt) {
+      return `<div class="thumb-wrap" onclick="openLightbox('${src}')" title="Clic para ver en grande">
+        <img src="${src}" alt="${alt}" class="process-thumb">
+        <div class="thumb-hint">Ver en grande ↗</div>
+      </div>`;
+    }
+
+    function renderModalContent(c) {
+      // Intención bajo el título
+      const intencionEl = document.getElementById('mIntencion');
+      intencionEl.textContent = c.intencion || c.desc || '';
+
+      // STEP 0: Prompt base
+      const s0 = document.getElementById('step-0');
+      if (c.promptBase) {
+        const imgs = (c.imgsBase||[]).map((src,i)=>makeImg(src,`Variante ${i===0?'izquierda':'derecha'} — prompt base`)).join('');
+        s0.innerHTML = `
+          <div class="process-prompt-block">
+            <span class="process-label">EN</span>
+            <p class="process-text italic">${c.promptBase.en}</p>
+          </div>
+          <div class="process-prompt-block">
+            <span class="process-label">ES</span>
+            <p class="process-text italic">${c.promptBase.es}</p>
+          </div>
+          ${imgs ? `<p class="process-generated-note">A partir de este prompt se generaron las siguientes imágenes:</p><div class="process-grid">${imgs}</div>` : ''}
+          ${c.promptBase.resultado ? `<div class="process-prompt-block" style="margin-top:1.25rem;"><span class="process-label">Resultado</span><p class="process-text">${c.promptBase.resultado}</p></div>` : ''}
+        `;
+      } else {
+        s0.innerHTML = `<p class="process-text">Prompt base no disponible.</p>`;
+      }
+
+      // STEP 1: Iteraciones
+      const s1 = document.getElementById('step-1');
+      if (c.iteraciones && c.iteraciones.length) {
+        s1.innerHTML = c.iteraciones.map((it,idx) => {
+          const imgs = (it.imgs||[]).map((src,i)=>makeImg(src,`${it.titulo} — variante ${i===0?'izquierda':'derecha'}`)).join('');
+          return `
+            <div class="iteracion-block">
+              <div class="iteracion-titulo">${it.titulo}</div>
+              <div class="process-prompt-block">
+                <span class="process-label">EN</span>
+                <p class="process-text italic">${it.prompt}</p>
+              </div>
+              ${it.promptEs ? `<div class="process-prompt-block">
+                <span class="process-label">ES</span>
+                <p class="process-text italic">${it.promptEs}</p>
+              </div>` : ''}
+              <div class="process-prompt-block">
+                <span class="process-label">Razón del cambio</span>
+                <p class="process-text">${it.razon}</p>
+              </div>
+              ${imgs ? `<p class="process-generated-note">Imágenes generadas con este prompt:</p><div class="process-grid">${imgs}</div>` : ''}
+              ${it.resultado ? `<div class="process-prompt-block" style="margin-top:1.25rem;"><span class="process-label">Resultado</span><p class="process-text">${it.resultado}</p></div>` : ''}
+            </div>
+          `;
+        }).join('<div class="iteracion-sep"></div>');
+      } else {
+        s1.innerHTML = `<p class="process-text">Iteraciones no disponibles.</p>`;
+      }
+
+      // STEP 2: Imagen final
+      const s2 = document.getElementById('step-2');
+      if (c.imgFinal) {
+        const criterioHtml = c.criterio
+          ? c.criterio.split('\n\n').map(p=>`<p class="process-text" style="margin-bottom:.9rem;">${p}</p>`).join('')
+          : '';
+        s2.innerHTML = `
+          <div class="final-img-wrap">${makeImg(c.imgFinal,'Imagen final')}</div>
+          ${criterioHtml ? `<div class="process-prompt-block"><span class="process-label">Criterio de selección</span>${criterioHtml}</div>` : ''}
+        `;
+      } else {
+        s2.innerHTML = `<p class="process-text">Imagen final no disponible.</p>`;
+      }
+
+      // STEP 3: Lectura crítica del caso
+      const s3 = document.getElementById('step-3');
+      if (c.lecturaCritica) {
+        const lecturaHtml = c.lecturaCritica.split('\n\n').map(p=>`<p class="process-text" style="margin-bottom:.9rem;">${p}</p>`).join('');
+        s3.innerHTML = `
+          <div class="process-prompt-block">
+            <span class="process-label">Lectura crítica del caso</span>
+            ${lecturaHtml}
+          </div>
+        `;
+      } else {
+        s3.innerHTML = `<p class="process-text">Lectura crítica no disponible.</p>`;
+      }
+    }
+
+    // ── MODAL ─────────────────────────────────────────────
+    const overlay=document.getElementById('modalOverlay');
+    let currentCaseIdx=0;
+
+    window.openModal=function(idx){
+      if(hasDragged)return;
+      currentCaseIdx=idx;
+      const c=cases[idx];
+      document.getElementById('mNum').textContent=c.num;
+      document.getElementById('mTitle').textContent=c.title;
+      renderModalContent(c);
+      setStep(0); overlay.classList.add('open');
+      updateCaseNav();
+    };
+    window.closeModal=function(){overlay.classList.remove('open');};
+    window.closeModalIfBg=function(e){if(e.target===overlay)closeModal();};
+    window.setStep=function(i){
+      document.querySelectorAll('.pnav-btn').forEach((b,j)=>b.classList.toggle('active',j===i));
+      document.querySelectorAll('.process-step').forEach((s,j)=>s.classList.toggle('active',j===i));
+    };
+    function updateCaseNav(){
+      document.getElementById('modalPrevCase').disabled = currentCaseIdx===0;
+      document.getElementById('modalNextCase').disabled = currentCaseIdx===cases.length-1;
+    }
+    window.goToCase=function(step){
+      const next=currentCaseIdx+step;
+      if(next<0||next>=cases.length)return;
+      openModal(next);
+    };
+
+    // ── ENCUESTA FAB ──────────────────────────────────────
+    const surveyBubble=document.getElementById('surveyBubble');
+    const surveyFab=document.getElementById('surveyFab');
+    let bubbleClosed=false;
+    function showSurveyUI(){
+      if(!bubbleClosed){
+        setTimeout(()=>surveyBubble.classList.add('show'),800);
+        setTimeout(()=>{if(!bubbleClosed)surveyBubble.classList.remove('show');},6000);
+      }
+      setTimeout(()=>surveyFab.classList.add('show'),400);
+    }
+    window.closeBubble=function(){bubbleClosed=true;surveyBubble.classList.remove('show');};
+    window.irAEncuesta=function(){closeBubble();goToFloor(4);if(typeof iniciarResultados==='function')iniciarResultados();openReflexionIntro();};
+    window.openReflexionIntro=function(){document.getElementById('reflexionIntroOverlay').classList.add('show');};
+    window.closeReflexionIntro=function(){document.getElementById('reflexionIntroOverlay').classList.remove('show');};
+  </script>
+
+  <!-- ── FIREBASE + ENCUESTA ───────────────────────────── -->
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, query, where, Timestamp }
+    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  const db = getFirestore(initializeApp({
+    apiKey:"AIzaSyADBunHoGaq9U9eFTRxmdb0HHWHdc6nMAs",
+    authDomain:"de-todos-y-de-nadie.firebaseapp.com",
+    projectId:"de-todos-y-de-nadie",
+    storageBucket:"de-todos-y-de-nadie.firebasestorage.app",
+    messagingSenderId:"230603566606",
+    appId:"1:230603566606:web:1fe12d7afe4b4c41e4565f"
+  }));
+
+  const QS=[
+    {t:"¿Has utilizado herramientas de inteligencia artificial generativa en tu práctica como\u00a0diseñador/a?", o:["Sí, regularmente","Sí, ocasionalmente","Lo he explorado pero no en proyectos reales","No las he usado"]},
+    {t:"Estas etapas ocurren juntas al producir una imagen con IA. Ordénalas según dónde pesa más el rol del\u00a0diseñador.", o:["En la formulación del prompt","En la selección y descarte de resultados","En la definición de la intención antes de comenzar","En la edición y ajuste del resultado final"], rank:true},
+    {t:"¿A quién atribuirías la autoría de una imagen generada mediante co-creación con IA?", o:["Al diseñador, porque dirige el proceso","A la IA, porque genera el resultado","A ambos por igual","A ninguno de los dos"]},
+    {t:"¿Consideras que una imagen producida mediante co-creación con IA puede ser genuinamente\u00a0original?", o:["Sí, si hay una intención proyectual clara detrás","Depende del grado de intervención del diseñador","No, porque el sistema opera sobre imágenes previas","No lo tengo claro"]},
+    {t:"¿Firmarías con tu nombre una imagen generada mediante co-creación con IA? ¿Sientes que la creaste o que la elegiste?", o:[], open:true},
+    {t:"¿La IA representa una actualización de herramientas o una transformación en cómo se concibe y practica el diseño\u00a0gráfico?", o:[], open:true}
+  ];
+  const C=["#7EEAEA","#1DA8A8","#0D7A8A","#40C8B0"];
+  const CH=["#A0F0F0","#30BEBE","#1A9AAA","#60D8C0"];
+  const CDIM=["rgba(126,234,234,.15)","rgba(29,168,168,.15)","rgba(13,122,138,.15)","rgba(64,200,176,.15)"];
+
+  let user=null,qi=0,ans=Array(QS.length).fill(null);
+  let chart=null,tab=0,rows=[],busy=false,netAnim=null;
+
+  window.sIrA=function(id){
+    ["vr","vq","vd","vres"].forEach(v=>{
+      const el=document.getElementById(v);
+      if(el){el.classList.add("hidden");el.style.display="none";}
+    });
+    const el=document.getElementById(id);
+    if(el){el.classList.remove("hidden");el.style.display="flex";}
+  };
+
+  const rnEl=document.getElementById("rn"),reEl=document.getElementById("re"),bregEl=document.getElementById("breg");
+  if(rnEl&&reEl&&bregEl){
+    [rnEl,reEl].forEach(el=>el.addEventListener("input",()=>{
+      const ok=rnEl.value.trim()&&reEl.value.includes("@");
+      bregEl.style.opacity=ok?"1":".3";bregEl.disabled=!ok;
+    }));
+  }
+
+  window.sRegistrar=async()=>{
+    const email=reEl.value.trim().toLowerCase(),err=document.getElementById("rerr");
+    err.style.display="none";bregEl.disabled=true;bregEl.textContent="Verificando...";
+    try{
+      const hash=btoa(unescape(encodeURIComponent(email))).replace(/=/g,"");
+      const snap=await getDocs(query(collection(db,"usuarios"),where("hash","==",hash)));
+      if(!snap.empty){err.textContent="Este correo ya respondió.";err.style.display="block";bregEl.disabled=false;bregEl.textContent="Participar";return;}
+      user={hash,nombre:rnEl.value.trim()};window.sComenzar();
+    }catch(e){err.textContent="Error: "+e.message;err.style.display="block";bregEl.disabled=false;bregEl.textContent="Participar";}
+  };
+
+  window.sComenzar=function(){qi=0;ans=Array(QS.length).fill(null);window.sIrA("vq");sRenderQ();};
+
+  function humo(txt,id){
+    const el=document.getElementById(id);el.innerHTML="";
+    txt.split(" ").forEach((w,i)=>{const s=document.createElement("span");s.className="word";s.textContent=w;setTimeout(()=>s.classList.add("on"),i*75);el.appendChild(s);});
+    return txt.split(" ").length*75+100;
+  }
+
+  function sRenderQ(){
+    const q=QS[qi],T=QS.length;
+    const pf=document.getElementById("qpf");if(pf)pf.style.width=`${(qi/T)*100}%`;
+    const qn=document.getElementById("qnum");if(qn)qn.textContent=`${qi+1} de ${T}`;
+    const bb=document.getElementById("bback");if(bb)bb.disabled=qi===0;
+    const bn=document.getElementById("bnext");if(bn){bn.textContent=qi===T-1?"Enviar":"Siguiente";bn.disabled=q.open?!(ans[qi]&&ans[qi].length>=3):(q.rank?!(ans[qi]&&ans[qi].length===q.o.length):ans[qi]===null);}
+    const d=humo(q.t,"qtxt");
+    const oe=document.getElementById("qopts");if(!oe)return;oe.innerHTML="";
+    if(q.open){
+      const wrap=document.createElement("div");wrap.style.cssText="display:flex;flex-direction:column;align-items:center;width:100%;max-width:560px;gap:10px;";
+      const ta=document.createElement("textarea");ta.style.cssText="width:100%;min-height:110px;padding:14px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:14px;color:#F0EEFF;font-size:15px;font-family:inherit;line-height:1.6;resize:none;outline:none;";
+      ta.placeholder="Escribe tu respuesta aquí...";ta.maxLength=280;
+      if(ans[qi])ta.value=ans[qi];
+      const ch=document.createElement("div");ch.style.cssText="font-size:11px;color:rgba(240,238,255,.28);align-self:flex-end;";ch.textContent=`${(ans[qi]||"").length} / 280`;
+      ta.addEventListener("input",()=>{ans[qi]=ta.value.trim();ch.textContent=`${ta.value.length} / 280`;if(bn)bn.disabled=ans[qi].length<3;});
+      wrap.appendChild(ta);wrap.appendChild(ch);oe.appendChild(wrap);
+    } else if(q.rank) {
+      if(!Array.isArray(ans[qi]))ans[qi]=[];
+      const hint=document.createElement("div");hint.style.cssText="font-size:12px;color:rgba(240,238,255,.35);margin-bottom:6px;max-width:480px;text-align:center;";
+      hint.textContent="Toca las opciones en orden: tu primer clic es tu 1er lugar, y así sucesivamente.";
+      oe.appendChild(hint);
+      const renderRankBtns=()=>{
+        document.querySelectorAll('#qopts .rank-btn').forEach(el=>el.remove());
+        q.o.forEach((o,i)=>{
+          const pos=ans[qi].indexOf(i);
+          const b=document.createElement("button");
+          b.className="rank-btn";
+          b.style.cssText="width:100%;padding:13px 22px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;color:rgba(240,238,255,.5);font-size:14px;font-family:inherit;cursor:pointer;text-align:left;display:flex;align-items:center;gap:12px;transition:background .15s,color .15s,border-color .15s;";
+          if(pos>-1){
+            const c=C[pos];
+            b.style.background="rgba(13,122,138,.18)";b.style.borderColor=c;b.style.color="#F0EEFF";b.style.fontWeight="500";
+          }
+          const badge=document.createElement("span");
+          badge.style.cssText="display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:12px;font-weight:600;flex-shrink:0;background:"+(pos>-1?C[pos]:"rgba(255,255,255,.08)")+";color:"+(pos>-1?"#04201c":"rgba(240,238,255,.3)")+";";
+          badge.textContent=pos>-1?String(pos+1):"";
+          const txt=document.createElement("span");txt.textContent=o;txt.style.textAlign="left";
+          b.appendChild(badge);b.appendChild(txt);
+          b.onclick=()=>{
+            const idx=ans[qi].indexOf(i);
+            if(idx>-1)ans[qi].splice(idx,1);
+            else if(ans[qi].length<q.o.length)ans[qi].push(i);
+            renderRankBtns();
+            const bn2=document.getElementById('bnext');if(bn2)bn2.disabled=!(ans[qi].length===q.o.length);
+          };
+          oe.appendChild(b);
+          setTimeout(()=>{b.style.opacity="1";},d+i*85);
+        });
+      };
+      renderRankBtns();
+    } else {
+      q.o.forEach((o,i)=>{
+        const b=document.createElement("button");
+        b.style.cssText="width:100%;padding:13px 22px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;color:rgba(240,238,255,.5);font-size:14px;font-family:inherit;cursor:pointer;text-align:center;transition:background .15s,color .15s;";
+        if(ans[qi]===i)b.style.cssText+="background:rgba(13,122,138,.25);border-color:#1DA8A8;color:#7EEAEA;font-weight:500;";
+        b.textContent=o;
+        b.onclick=()=>{ans[qi]=i;document.querySelectorAll('#qopts button').forEach((btn,j)=>{btn.style.background=j===i?'rgba(13,122,138,.25)':'rgba(255,255,255,.04)';btn.style.borderColor=j===i?'#1DA8A8':'rgba(255,255,255,.09)';btn.style.color=j===i?'#7EEAEA':'rgba(240,238,255,.5)';btn.style.fontWeight=j===i?'500':'400';});const bn=document.getElementById('bnext');if(bn)bn.disabled=false;};
+        oe.appendChild(b);
+        setTimeout(()=>{b.style.opacity="1";},d+i*85);
+      });
+    }
+  }
+
+  window.sAtras=()=>{if(qi>0){qi--;sRenderQ();}};
+  window.sSig=async()=>{
+    if(qi<QS.length-1){qi++;sRenderQ();return;}
+    const bn=document.getElementById("bnext");if(bn){bn.disabled=true;bn.textContent="Guardando...";}
+    try{
+      await addDoc(collection(db,"usuarios"),{hash:user.hash,ts:Timestamp.now()});
+      const respuestasSafe=ans.slice(0,4).map(a=>Array.isArray(a)?{rank:a}:a);
+      await addDoc(collection(db,"respuestas"),{respuestas:respuestasSafe,abierta:ans[4]||"",abierta2:ans[5]||"",ts:Timestamp.now()});
+      window.sIrA("vd");
+    }catch(e){if(bn){bn.disabled=false;bn.textContent="Enviar";}alert("Error: "+e.message);}
+  };
+
+  window.sVerResultados=()=>{window.sIrA("vres");cargar();};
+  window.iniciarResultados=()=>{window.sIrA("vr");};
+
+  async function cargar(){
+    const spinEl=document.getElementById("cspin");if(spinEl)spinEl.classList.remove("hidden");
+    limpiarViz();
+    try{
+      const snap=await getDocs(collection(db,"respuestas"));
+      rows=[];snap.forEach(d=>rows.push(d.data()));
+      buildBar();renderTab(rows,tab,false);
+    }catch(e){const sp=document.getElementById("cspin");if(sp)sp.classList.add("hidden");alert("Error al cargar: "+e.message);}
+  }
+
+  function buildBar(){
+    const sb=document.getElementById("s-rsbar");sb.innerHTML="";
+    QS.forEach((_,i)=>{const b=document.createElement("button");b.className="qdot"+(i===tab?" on":"");b.textContent=i+1;b.onclick=()=>cambiar(i);sb.appendChild(b);});
+  }
+
+  window.cambiar=(i)=>{
+    if(i===tab||busy)return;busy=true;
+    limpiarViz();
+    setTimeout(()=>{tab=i;buildBar();renderTab(rows,i,true);busy=false;},300);
+  };
+
+  function limpiarViz(){
+    if(netAnim){cancelAnimationFrame(netAnim);netAnim=null;}
+    ["dot-scene","bars-scene","radar-scene","czone","net-scene"].forEach(id=>{
+      const el=document.getElementById(id);
+      if(el){el.classList.remove("show");el.classList.add("hidden");}
+    });
+    const nh=document.getElementById("net-hint");if(nh){nh.classList.remove("show");nh.classList.add("hidden");}
+    const nhi=document.getElementById("net-hint-inline");if(nhi){nhi.style.display="none";nhi.style.opacity="0";}
+    const svg=document.getElementById("ann-svg");if(svg){svg.innerHTML="";svg.classList.remove("show");}
+    document.getElementById("ann-labels").innerHTML="";
+    document.getElementById("ring1").classList.add("hidden");
+    document.getElementById("ring2").classList.add("hidden");
+    if(chart){chart.destroy();chart=null;}
+    const _rc=document.getElementById("results-chart");if(_rc)_rc.classList.add("hidden");
+  }
+
+  function renderTab(data,qi2,entrada){
+    const _cs=document.getElementById("cspin");if(_cs)_cs.classList.add("hidden");
+    if(qi2===0)renderDots(data,qi2,entrada);
+    else if(qi2===1)renderRankBars(data,qi2,entrada);
+    else if(qi2===2)renderRadar(data,qi2,entrada);
+    else if(qi2===4)renderNet(data,entrada,"abierta",4);
+    else if(qi2===5)renderNet(data,entrada,"abierta2",5);
+    else{const _cz=document.getElementById("czone");if(_cz)_cz.classList.remove("hidden");renderDonut(data,qi2,entrada);}
+  }
+
+  function renderDots(data,qi2,entrada){
+    const q=QS[qi2],counts=q.o.map((_,i)=>data.filter(r=>r.respuestas?.[qi2]===i).length),total=counts.reduce((a,b)=>a+b,0)||1;
+    humo(q.t,"s-rq");
+    const TOTAL=100,COLS=10,ROWS=10;
+    const dc=counts.map(c=>Math.round((c/total)*TOTAL));
+    dc[counts.indexOf(Math.max(...counts))]+=TOTAL-dc.reduce((a,b)=>a+b,0);
+    const dots=[];dc.forEach((n,i)=>{for(let j=0;j<n;j++)dots.push(i);});
+    const dotSize=window.innerWidth<380?13:(window.innerWidth<700?15:36),grid=document.getElementById("dot-grid");grid.innerHTML="";
+    grid.style.gridTemplateColumns=`repeat(${COLS},${dotSize}px)`;grid.style.gridTemplateRows=`repeat(${ROWS},${dotSize}px)`;
+    dots.forEach((ci,i)=>{const d=document.createElement("div");d.className="dot-cell";d.style.cssText=`width:${dotSize}px;height:${dotSize}px;background:${CDIM[ci]};color:${C[ci]}`;grid.appendChild(d);setTimeout(()=>{d.style.background=C[ci];d.classList.add("lit");},entrada?300+i*14:i*12);});
+    const legend=document.getElementById("dot-legend");legend.innerHTML="";
+    [...counts.map((c,i)=>({c,i}))].filter(x=>x.c>0).sort((a,b)=>b.c-a.c).forEach(({c,i},rank)=>{
+      const pct=Math.round((c/total)*100),item=document.createElement("div");item.className="dl-item"+(rank===0?" top":"");
+      item.innerHTML=`<div class="dl-pct" style="color:${C[i]}">${pct}%</div><div class="dl-narrative"><span class="dl-swatch" style="background:${C[i]}"></span>Los participantes coinciden en <strong>${q.o[i].toLowerCase()}</strong></div>`;
+      legend.appendChild(item);setTimeout(()=>item.classList.add("show"),entrada?500+rank*180:250+rank*180);
+    });
+    const ds=document.getElementById("dot-scene");if(!ds)return;
+    ds.classList.remove("hidden");ds.style.display="flex";requestAnimationFrame(()=>requestAnimationFrame(()=>ds.classList.add("show")));
+  }
+
+  function renderBars(data,qi2,entrada){
+    const q=QS[qi2],counts=q.o.map((_,i)=>data.filter(r=>r.respuestas?.[qi2]===i).length),total=counts.reduce((a,b)=>a+b,0)||1;
+    humo(q.t,"s-rq");
+    const scene=document.getElementById("bars-scene");if(!scene)return;
+    scene.innerHTML="";scene.classList.remove("hidden");scene.style.display="flex";
+    const isNarrow=window.innerWidth<700;
+    const STICKS=isNarrow?12:20,sorted=[...counts.map((c,i)=>({c,i}))].sort((a,b)=>b.c-a.c);
+    sorted.forEach(({c:cnt,i},rank)=>{
+      const pct=Math.round((cnt/total)*100),filledSticks=Math.round((pct/100)*STICKS);
+      const row=document.createElement("div");row.className="bar-row";
+      const left=document.createElement("div");left.className="bar-left";
+      const stickWrap=document.createElement("div");stickWrap.className="bar-sticks";
+      const stickW=isNarrow?6:Math.max(4,Math.min(9,Math.floor(600/STICKS)-5));
+      for(let s=0;s<STICKS;s++){const stick=document.createElement("div");stick.className="bar-stick";stick.style.cssText=`width:${stickW}px;border-radius:3px;background:${s<filledSticks?C[i]:C[i]+"33"};height:0`;stickWrap.appendChild(stick);setTimeout(()=>{stick.style.height=isNarrow?"56px":"82px";},(entrada?350:150)+rank*100+s*14);}
+      left.appendChild(stickWrap);
+      const right=document.createElement("div");right.className="bar-right";right.style.cssText="display:flex;flex-direction:column;align-items:flex-end;flex-shrink:0;min-width:100px";
+      const pctEl=document.createElement("div");pctEl.className="bar-pct";pctEl.style.color=C[i];pctEl.textContent=pct+"%";
+      const label=document.createElement("div");label.className="bar-label";label.style.textAlign="right";label.textContent=q.o[i];
+      right.appendChild(pctEl);right.appendChild(label);row.appendChild(left);row.appendChild(right);scene.appendChild(row);
+      setTimeout(()=>pctEl.classList.add("show"),(entrada?450:200)+rank*100+300);
+    });
+    requestAnimationFrame(()=>requestAnimationFrame(()=>scene.classList.add("show")));
+  }
+
+  function renderRankBars(data,qi2,entrada){
+    const q=QS[qi2],N=q.o.length;
+    const rankCounts=q.o.map(()=>Array(N).fill(0));
+    let validTotal=0;
+    data.forEach(r=>{
+      const order=r.respuestas?.[qi2]?.rank;
+      if(Array.isArray(order)&&order.length===N){
+        validTotal++;
+        order.forEach((optIdx,pos)=>{if(rankCounts[optIdx])rankCounts[optIdx][pos]++;});
+      }
+    });
+    const total=validTotal||1;
+    humo(q.t,"s-rq");
+    const scene=document.getElementById("bars-scene");if(!scene)return;
+    scene.innerHTML="";scene.classList.remove("hidden");scene.style.display="flex";
+    if(validTotal===0){
+      const empty=document.createElement("div");
+      empty.style.cssText="font-size:14px;color:rgba(240,238,255,.4);padding:2rem 0;text-align:center;width:100%;";
+      empty.textContent="Aún no hay respuestas para esta pregunta.";
+      scene.appendChild(empty);
+      requestAnimationFrame(()=>requestAnimationFrame(()=>scene.classList.add("show")));
+      return;
+    }
+    const isNarrow=window.innerWidth<700;
+    const STICKS=isNarrow?12:20,stickW=isNarrow?6:Math.max(4,Math.min(9,Math.floor(600/STICKS)-5));
+
+    const order=q.o.map((_,i)=>i).sort((a,b)=>Math.max(...rankCounts[b])-Math.max(...rankCounts[a]));
+    order.forEach((i,rank)=>{
+      const counts=rankCounts[i],optTotal=counts.reduce((a,b)=>a+b,0)||1;
+      const sticksPer=counts.map(c=>Math.round((c/total)*STICKS));
+      let diff=STICKS-sticksPer.reduce((a,b)=>a+b,0);
+      sticksPer[sticksPer.indexOf(Math.max(...sticksPer))]+=diff;
+      const colorSeq=[];sticksPer.forEach((n,pos)=>{for(let j=0;j<n;j++)colorSeq.push(C[pos]);});
+      const topPos=counts.indexOf(Math.max(...counts)),topPct=Math.round((counts[topPos]/total)*100);
+
+      const row=document.createElement("div");row.className="bar-row";
+      const left=document.createElement("div");left.className="bar-left";
+      const stickWrap=document.createElement("div");stickWrap.className="bar-sticks";
+      colorSeq.forEach((color,s)=>{
+        const stick=document.createElement("div");stick.className="bar-stick";
+        stick.style.cssText=`width:${stickW}px;border-radius:3px;background:${color};height:0`;
+        stickWrap.appendChild(stick);
+        setTimeout(()=>{stick.style.height=isNarrow?"56px":"82px";},(entrada?350:150)+rank*100+s*14);
+      });
+      left.appendChild(stickWrap);
+      const right=document.createElement("div");right.className="bar-right";right.style.cssText="display:flex;flex-direction:column;align-items:flex-end;flex-shrink:0;min-width:100px";
+      const pctEl=document.createElement("div");pctEl.className="bar-pct";pctEl.style.color=C[topPos];pctEl.textContent=topPct+"%";
+      const label=document.createElement("div");label.className="bar-label";label.style.textAlign="right";label.textContent=q.o[i];
+      const sub=document.createElement("div");sub.style.cssText="font-size:11px;color:rgba(240,238,255,.32);margin-top:2px;text-align:right;";
+      sub.textContent=`en ${topPos+1}${topPos===0?"er":"do"} lugar`;
+      right.appendChild(pctEl);right.appendChild(label);right.appendChild(sub);
+      row.appendChild(left);row.appendChild(right);scene.appendChild(row);
+      setTimeout(()=>pctEl.classList.add("show"),(entrada?450:200)+rank*100+300);
+    });
+    requestAnimationFrame(()=>requestAnimationFrame(()=>scene.classList.add("show")));
+  }
+
+  function renderRadar(data,qi2,entrada){
+    const q=QS[qi2],counts=q.o.map((_,i)=>data.filter(r=>r.respuestas?.[qi2]===i).length),total=counts.reduce((a,b)=>a+b,0)||1;
+    humo(q.t,"s-rq");
+    const scene=document.getElementById("radar-scene");scene.classList.remove("hidden");
+    requestAnimationFrame(()=>requestAnimationFrame(()=>scene.classList.add("show")));
+    const canvas=document.getElementById("radar-canvas");
+    const size=window.innerWidth<700?Math.max(280,Math.min(430,window.innerWidth-50)):520;
+    canvas.width=size;canvas.height=size;canvas.style.width=size+"px";canvas.style.height=size+"px";
+    document.getElementById("radar-wrap").style.cssText=`width:${size}px;height:${size}px`;
+    const ctx=canvas.getContext("2d"),cx=size/2,cy=size/2,R=size*(window.innerWidth<700?0.42:0.32),N=counts.length;
+    const angles=counts.map((_,i)=>(-Math.PI/2)+(2*Math.PI*i/N)),vals=counts.map(c=>c/total);
+    let prog=0;const dur=entrada?700:500,startT=performance.now();
+    function animRadar(now){
+      prog=Math.min(1,(now-startT)/dur);const ease=1-Math.pow(1-prog,3);
+      ctx.clearRect(0,0,size,size);
+      ctx.strokeStyle="rgba(255,255,255,.45)";ctx.lineWidth=1;
+      [0.25,0.5,0.75,1].forEach(r=>{ctx.beginPath();angles.forEach((a,i)=>{const x=cx+R*r*Math.cos(a),y=cy+R*r*Math.sin(a);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);});ctx.closePath();ctx.stroke();});
+      angles.forEach(a=>{ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+R*Math.cos(a),cy+R*Math.sin(a));ctx.strokeStyle="rgba(255,255,255,.35)";ctx.lineWidth=1;ctx.stroke();});
+      const pts=angles.map((a,i)=>({x:cx+R*vals[i]*ease*Math.cos(a),y:cy+R*vals[i]*ease*Math.sin(a)}));
+      ctx.beginPath();pts.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));ctx.closePath();
+      ctx.fillStyle="rgba(29,168,168,.2)";ctx.fill();ctx.strokeStyle="rgba(126,234,234,.75)";ctx.lineWidth=2;ctx.stroke();
+      pts.forEach((p,i)=>{ctx.beginPath();ctx.arc(p.x,p.y,5,0,Math.PI*2);ctx.fillStyle=C[i];ctx.shadowColor=C[i];ctx.shadowBlur=10;ctx.fill();ctx.shadowBlur=0;});
+      if(prog<1)requestAnimationFrame(animRadar);
+    }
+    requestAnimationFrame(animRadar);
+    const wrap=document.getElementById("radar-wrap");wrap.querySelectorAll(".radar-axis-label").forEach(el=>el.remove());
+    if(window.innerWidth>=700){
+    angles.forEach((a,i)=>{
+      const pad=R*0.22,lx=cx+(R+pad)*Math.cos(a),ly=cy+(R+pad)*Math.sin(a);
+      const el=document.createElement("div");
+      el.className="radar-axis-label";
+      const cos=Math.cos(a),sin=Math.sin(a);
+      const base="position:absolute;font-size:11px;color:rgba(240,238,255,.6);font-family:Inter,sans-serif;line-height:1.4;pointer-events:none;white-space:normal;";
+      if(cos>0.3){
+        el.style.cssText=base+`left:${lx}px;top:${ly}px;width:120px;text-align:center;transform:translate(8px,-50%);`;
+      } else if(cos<-0.3){
+        el.style.cssText=base+`left:${lx}px;top:${ly}px;width:130px;text-align:center;transform:translate(calc(-100% - 8px),-50%);`;
+      } else if(sin<0){
+        el.style.cssText=base+`left:${lx}px;top:${ly}px;width:150px;text-align:center;transform:translate(-50%,calc(-100% - 8px));`;
+      } else {
+        el.style.cssText=base+`left:${lx}px;top:${ly}px;width:150px;text-align:center;transform:translate(-50%,8px);`;
+      }
+      el.textContent=q.o[i];
+      wrap.appendChild(el);
+    });
+    }
+    const legend=document.getElementById("radar-legend");legend.innerHTML="";
+    [...counts.map((c,i)=>({c,i}))].sort((a,b)=>b.c-a.c).forEach(({c,i},rank)=>{
+      const pct=Math.round((c/total)*100),item=document.createElement("div");item.className="radar-leg-item";
+      item.innerHTML=`<div class="radar-leg-pct" style="color:${C[i]}${rank===0?';font-size:clamp(36px,4.5vw,52px)':''}"><span class="radar-leg-dot" style="background:${C[i]}"></span>${pct}%</div><div class="radar-leg-label">${q.o[i]}</div>`;
+      legend.appendChild(item);setTimeout(()=>item.classList.add("show"),(entrada?400:200)+rank*100);
+    });
+  }
+
+  function renderDonut(data,qi2,entrada){
+    const q=QS[qi2],counts=q.o.map((_,i)=>data.filter(r=>r.respuestas?.[qi2]===i).length),total=counts.reduce((a,b)=>a+b,0)||1;
+    const maxI=counts.indexOf(Math.max(...counts)),topPct=Math.round((counts[maxI]/total)*100);
+    humo(q.t,"s-rq");
+    document.getElementById("cpct").textContent=topPct+"%";document.getElementById("clbl").textContent=q.o[maxI];
+    if(chart){chart.destroy();chart=null;}
+    const cv=document.getElementById("results-chart");cv.classList.remove("hidden");
+    if(entrada){cv.classList.add("entering");setTimeout(()=>cv.classList.remove("entering"),520);}
+    chart=new Chart(cv,{
+      type:"doughnut",
+      data:{labels:q.o,datasets:[{data:counts,backgroundColor:C,hoverBackgroundColor:CH,borderColor:"#070510",borderWidth:2,spacing:0}]},
+      options:{responsive:true,maintainAspectRatio:true,cutout:"62%",layout:{padding:16},
+        plugins:{legend:{display:false},tooltip:{backgroundColor:"rgba(10,6,24,.95)",borderColor:"rgba(126,234,234,.3)",borderWidth:1,titleColor:"#F0EEFF",bodyColor:"rgba(240,238,255,.65)",callbacks:{label:ctx=>`  ${counts[ctx.dataIndex]} resp. (${Math.round((counts[ctx.dataIndex]/total)*100)}%)`}}},
+        onHover:(_,els)=>{const i=els.length?els[0].index:-1;document.getElementById("cpct").textContent=(i>=0?Math.round((counts[i]/total)*100):topPct)+"%";document.getElementById("clbl").textContent=i>=0?q.o[i]:q.o[maxI];},
+        animation:{animateRotate:true,duration:entrada?700:500,easing:"easeInOutQuart",
+          onComplete:()=>{
+            const cz=document.getElementById("czone");const cr=cv.getBoundingClientRect(),zr=cz.getBoundingClientRect();
+            const cx=cr.left-zr.left+cr.width/2,cy=cr.top-zr.top+cr.height/2,r=cr.width/2;
+            [["ring1",14,"rgba(184,174,255,.12)","0 0 22px rgba(124,111,205,.2)"],["ring2",26,"rgba(184,174,255,.05)",""]].forEach(([id,pad,bc,bs])=>{
+              const el=document.getElementById(id);el.classList.remove("hidden");Object.assign(el.style,{left:`${cx-r-pad}px`,top:`${cy-r-pad}px`,width:`${(r+pad)*2}px`,height:`${(r+pad)*2}px`,border:`1px solid ${bc}`,boxShadow:bs});
+            });
+            const dLegend=document.getElementById("donut-legend");
+            if(window.innerWidth<700){
+              // Mobile: sin etiquetas alrededor del donut (se superponían) — leyenda abajo
+              dLegend.innerHTML="";
+              [...counts.map((c,i)=>({c,i}))].filter(o=>o.c>0).sort((a,b)=>b.c-a.c).forEach(({c,i},rank)=>{
+                const pct=Math.round((c/total)*100),item=document.createElement("div");item.className="radar-leg-item";
+                item.innerHTML=`<div class="radar-leg-pct" style="color:${C[i]}"><span class="radar-leg-dot" style="background:${C[i]}"></span>${pct}%</div><div class="radar-leg-label">${q.o[i]}</div>`;
+                dLegend.appendChild(item);setTimeout(()=>item.classList.add("show"),120+rank*100);
+              });
+              return;
+            }
+            dLegend.innerHTML="";
+            setTimeout(()=>{
+              const svg=document.getElementById("ann-svg"),lc=document.getElementById("ann-labels");
+              svg.innerHTML="";lc.innerHTML="";svg.classList.remove("show");
+              const narrow=zr.width<480;
+              const legOff=narrow?4:6, midOff=narrow?12:30, endOff=narrow?10:28;
+              let startA=-Math.PI/2;
+              counts.forEach((cnt,i)=>{const sweep=2*Math.PI*(cnt/total),mid=startA+sweep/2;startA+=sweep;if(!cnt)return;const pct=Math.round((cnt/total)*100),oR=i===maxI?r+10:r,p1x=cx+(oR+legOff)*Math.cos(mid),p1y=cy+(oR+legOff)*Math.sin(mid),p2x=p1x+midOff*Math.cos(mid),p2y=p1y+midOff*Math.sin(mid),goR=Math.cos(mid)>=0,p3xRaw=goR?p2x+endOff:p2x-endOff,p3y=p2y;
+                const labelW=narrow?70:150;
+                const p3x=narrow?Math.max(labelW*0.5,Math.min(zr.width-labelW*0.5,p3xRaw)):p3xRaw;
+                const mk=(tag,a)=>{const el=document.createElementNS("http://www.w3.org/2000/svg",tag);Object.entries(a).forEach(([k,v])=>el.setAttribute(k,v));return el;};svg.appendChild(mk("line",{x1:p1x,y1:p1y,x2:p2x,y2:p2y,stroke:C[i],"stroke-width":"1",opacity:"0.5"}));svg.appendChild(mk("line",{x1:p2x,y1:p2y,x2:p3x,y2:p3y,stroke:C[i],"stroke-width":"1",opacity:"0.5"}));svg.appendChild(mk("circle",{cx:p1x,cy:p1y,r:"2.5",fill:C[i]}));const div=document.createElement("div");div.className="alabel";
+                if(narrow){div.style.cssText=`top:${p3y-18}px;left:${p3x}px;width:${labelW}px;transform:translateX(-50%);text-align:center;`;}
+                else{div.style.cssText=`top:${p3y-18}px;${goR?"left":"right"}:${goR?p3x+4:zr.width-p3x+4}px;text-align:${goR?"left":"right"};`;}
+                div.innerHTML=`<div class="aname" style="color:${C[i]}">${q.o[i]}</div><div class="aval" style="color:${C[i]}">${cnt} · ${pct}%</div>`;lc.appendChild(div);setTimeout(()=>div.classList.add("show"),120+i*130);});
+              setTimeout(()=>svg.classList.add("show"),150);
+            },entrada?300:150);
+          }
+        }
+      }
+    });
+  }
+
+  window.cerrarModal=()=>document.getElementById("net-modal").classList.remove("show");
+
+  function renderNet(data,entrada,campo="abierta",qi2=4){
+    const respuestas=data.map(r=>r[campo]).filter(t=>t&&t.trim().length>0);
+    humo(QS[qi2].t,"s-rq");
+    const scene=document.getElementById("net-scene");if(!scene)return;
+    scene.classList.remove("hidden");scene.style.display="flex";
+    const nhInline=document.getElementById("net-hint-inline");if(nhInline){nhInline.style.display="block";setTimeout(()=>{nhInline.style.opacity="1";},900);}
+    requestAnimationFrame(()=>requestAnimationFrame(()=>scene.classList.add("show")));
+    if(netAnim){cancelAnimationFrame(netAnim);netAnim=null;}
+    const hint=document.getElementById("net-hint");hint.classList.remove("show");setTimeout(()=>hint.classList.add("show"),900);
+    const canvas=document.getElementById("net-canvas");
+    const rect=scene.getBoundingClientRect();if(!rect.width||!rect.height)return;
+    const DPR=window.devicePixelRatio||1;canvas.width=rect.width*DPR;canvas.height=rect.height*DPR;
+    canvas.style.width=rect.width+"px";canvas.style.height=rect.height+"px";
+    const ctx=canvas.getContext("2d");ctx.scale(DPR,DPR);const W=rect.width,H=rect.height;
+    if(!respuestas.length){ctx.fillStyle="rgba(184,174,255,.35)";ctx.font="15px Inter,sans-serif";ctx.textAlign="center";ctx.fillText("Aún no hay respuestas escritas",W/2,H/2);return;}
+    const M=60,nodes=respuestas.map((txt,i)=>({id:i,txt,x:M+Math.random()*(W-M*2),y:M+Math.random()*(H-M*2),vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:5+Math.random()*4,col:C[i%C.length],pulse:Math.random()*Math.PI*2}));
+    const edges=[];nodes.forEach((n,i)=>{const conns=2+Math.floor(Math.random()*2);[...nodes].filter((_,j)=>j!==i).sort(()=>Math.random()-.5).slice(0,conns).forEach(o=>{if(!edges.find(e=>(e.a===i&&e.b===o.id)||(e.a===o.id&&e.b===i)))edges.push({a:i,b:o.id});});});
+    const getPos=e=>{const br=canvas.getBoundingClientRect();return{x:(e.clientX||0)-br.left,y:(e.clientY||0)-br.top};};
+    const findNode=(mx,my)=>nodes.find(n=>Math.hypot(n.x-mx,n.y-my)<n.r+12)||null;
+    let hov=null;
+    canvas.addEventListener("mousemove",e=>{const{x,y}=getPos(e);hov=findNode(x,y);canvas.style.cursor=hov?"pointer":"default";});
+    canvas.addEventListener("mouseleave",()=>{hov=null;canvas.style.cursor="default";});
+    canvas.addEventListener("click",e=>{const{x,y}=getPos(e);const found=findNode(x,y);if(found){document.getElementById("modal-dot").style.cssText=`width:10px;height:10px;border-radius:50%;margin-bottom:1rem;background:${found.col};box-shadow:0 0 10px ${found.col};color:${found.col}`;document.getElementById("modal-text").textContent=found.txt;document.getElementById("net-modal").classList.add("show");}});
+    let frame=0;
+    function draw(){netAnim=requestAnimationFrame(draw);ctx.clearRect(0,0,W,H);frame++;nodes.forEach(n=>{n.x+=n.vx;n.y+=n.vy;if(n.x<M||n.x>W-M)n.vx*=-1;if(n.y<M||n.y>H-M)n.vy*=-1;n.pulse+=0.018;});edges.forEach(e=>{const a=nodes[e.a],b=nodes[e.b],isH=hov&&(hov.id===e.a||hov.id===e.b);ctx.save();ctx.strokeStyle=isH?"rgba(184,174,255,.5)":"rgba(184,174,255,.12)";ctx.lineWidth=isH?1.2:.7;ctx.setLineDash([4,7]);ctx.lineDashOffset=-(frame*.4)%11;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();ctx.restore();});nodes.forEach(n=>{const isH=hov&&hov.id===n.id,pulse=Math.sin(n.pulse)*2,r=isH?n.r+5:n.r+pulse;ctx.save();ctx.shadowColor=n.col;ctx.shadowBlur=isH?22:10;ctx.beginPath();ctx.arc(n.x,n.y,r,0,Math.PI*2);ctx.fillStyle=isH?n.col:n.col+"CC";ctx.fill();ctx.restore();ctx.beginPath();ctx.arc(n.x,n.y,r+3,0,Math.PI*2);ctx.strokeStyle=n.col+"44";ctx.lineWidth=1;ctx.stroke();});}
+    draw();
+  }
+  </script>
+</body>
+</html>
